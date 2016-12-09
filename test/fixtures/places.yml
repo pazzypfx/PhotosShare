@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: place1
+  place_code: 1
+
+two:
+  name: place2
+  place_code: 2
