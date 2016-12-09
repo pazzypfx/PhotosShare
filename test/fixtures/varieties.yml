@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  variety_code: Variety1
+  product: 1
+
+two:
+  name: MyString
+  variety_code: Variety2
+  product: 1
