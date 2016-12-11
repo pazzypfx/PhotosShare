@@ -6,7 +6,7 @@
 #
 default: &default
   adapter: mysql2
-  user: gal
+  username: gal
   password: password
   host: localhost
   pool: 5
