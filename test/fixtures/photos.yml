@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  path: "./public/images/1.jpg"
+  user: 1
+  variety: 1
+  place: 1
+  date: 2016-12-05 20:04:39
+  published: false
+
+two:
+  path: "/public/images/2.jpg"
+  user: 2
+  variety: 1
+  place: 2
+  date: 2016-12-07 21:04:39
+  published: true

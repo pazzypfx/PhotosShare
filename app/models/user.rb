@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :photos
+
   #attr_accessor :password
   has_secure_password
 
