@@ -1,0 +1,29 @@
+%p{:id => "notice"}= notice
+
+%p
+  %strong Username:
+  = @user.username
+
+%p
+  %strong Firstname:
+  = @user.firstName
+
+%p
+  %strong Lastname:
+  = @user.lastName
+
+%p
+  %strong Email:
+  = @user.email
+
+%p
+  %strong Password digest:
+  = @user.password_digest
+
+%p
+  %strong Active:
+  = @user.active
+
+= link_to 'Edit', edit_user_path(@user)
+|
+= link_to 'Back', users_path
