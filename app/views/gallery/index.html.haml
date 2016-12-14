@@ -1,0 +1,26 @@
+%header{:id => 'header'}
+  .selector
+    Product
+    %select{:name => 'product', :id => 'product'}
+      %option{:value => ''} select
+      - @products.each do |product|
+        %option{:value => "#{product.product_code}"}= product.name
+  .selector
+    Variety
+    %select{:name => 'variety', :id => 'variety'}
+      %option{:value => ''} select
+      - @varieties.each do |variety|
+        %option{:value => "#{variety.variety_code}"}= variety.name
+  .selector
+    Place
+    %select{:name => 'place', :id => 'place'}
+      %option{:value => ''} select
+      - @places.each do |place|
+        %option{:value => "#{place.place_code}"}= place.name
+
+
+%section{:id => 'thumbnails'}
+  - @photos.each do |photo|
+    %article
+      %a{:class => 'thumbnail', :href => "#{photo.path}"}
+        %img{:src => "#{photo.path}"}
