@@ -2,25 +2,22 @@
   .selector
     Product
     %select{:name => 'product', :id => 'product'}
-      %option{:value => ''} select
-      - @products.each do |product|
-        %option{:value => "#{product.product_code}"}= product.name
+      %option{:value => 'none'} - Select -
+      = options_for_select(@products, selected: @product_code)
+
   .selector
     Variety
     %select{:name => 'variety', :id => 'variety'}
-      %option{:value => ''} select
-      - @varieties.each do |variety|
-        %option{:value => "#{variety.variety_code}"}= variety.name
+      %option{:value => 'none'} - Select -
+      = options_for_select(@varieties, selected: @variety_code)
+
   .selector
     Place
     %select{:name => 'place', :id => 'place'}
-      %option{:value => ''} select
-      - @places.each do |place|
-        %option{:value => "#{place.place_code}"}= place.name
-
+      %option{:value => 'none'} - Select -
+      = options_for_select(@places, selected: @place_code)
 
 %section{:id => 'thumbnails'}
   - @photos.each do |photo|
     %article
-      %a{:class => 'thumbnail', :href => "#{photo.path}"}
-        %img{:src => "#{photo.path}"}
+      = link_to(image_tag(image_path("#{photo.path}")), image_path("#{photo.path}"), class: 'thumbnail', title: "#{photo.variety.name}")
