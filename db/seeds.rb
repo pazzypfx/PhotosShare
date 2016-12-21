@@ -18,5 +18,6 @@ varieties = Variety.create([{ name: 'Variety1', variety_code: 'Variety1',  produ
 places = Place.create([{ name: 'place1', place_code: 1 },
                        { name: 'place2', place_code: 2 }])
 
-photos = Photo.create([{ path: '/images/01.jpg', user: User.first, variety: Variety.first, place: Place.first, published: true  },
-                       { path: '/images/02.jpg', user: User.last,  variety: Variety.last,  place: Place.last,  published: false }])
+photos = Photo.create([{ path: '/images/01.jpg', thumbnail_path: '/thumbnails/01.jpg', user: User.first, variety: Variety.first, place: Place.first, published: true  },
+                       { path: '/images/02.jpg', thumbnail_path: '/thumbnails/02.jpg', user: User.last,  variety: Variety.last,  place: Place.last,  published: false },
+                       { path: '/images/03.jpg', thumbnail_path: '/thumbnails/03.jpg', user: User.last,  variety: Variety.first, place: Place.last,  published: true  }])
