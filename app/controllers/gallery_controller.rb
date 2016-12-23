@@ -44,13 +44,13 @@ before_action :set_variables, only: [:index]
     def set_param(name)
       case check_param(name)
         when 1
-          @product = Product.find_by_name(name)
+          @product = Product.find_by_product_code(name)
           @product_code = @product.product_code
         when 2
-          @variety = Variety.find_by_name(name) if Variety.exists?({name: name})
+          @variety = Variety.find_by_variety_code(name)
           @variety_code = @variety.variety_code
         when 3
-          @place = Place.find_by_name(name) if Place.exists?({name: name})
+          @place = Place.find_by_place_code(name)
           @place_code = @place.place_code
         else
           return false
@@ -59,9 +59,9 @@ before_action :set_variables, only: [:index]
     end
 
     def check_param(name)
-      return 1 if Product.exists?({name: name})
-      return 2 if Variety.exists?({name: name})
-      return 3 if Place.exists? ({name: name})
+      return 1 if Product.exists?({product_code: name})
+      return 2 if Variety.exists?({variety_code: name})
+      return 3 if Place.exists? ({place_code: name})
       return 0
     end
 
