@@ -1,19 +1,19 @@
 %header{:id => 'header'}
   .selector
     Product
-    %select{:name => 'product', :id => 'product', :class => 'selectors'}
+    %select{:name => 'product', :id => 'product', :class => 'selectors', :onclick => 'gallery.events.selector_changed()'}
       %option{:value => 'none'} - All -
       = options_for_select(@products, selected: @product_code)
 
   .selector
     Variety
-    %select{:name => 'variety', :id => 'variety', :class => 'selectors'}
+    %select{:name => 'variety', :id => 'variety', :class => 'selectors', :onclick => 'gallery.events.selector_changed()'}
       %option{:value => 'none'} - All -
       = options_for_select(@varieties, selected: @variety_code)
 
   .selector
     Place
-    %select{:name => 'place', :id => 'place', :class => 'selectors'}
+    %select{:name => 'place', :id => 'place', :class => 'selectors', :onclick => 'gallery.events.selector_changed()'}
       %option{:value => 'none'} - All -
       = options_for_select(@places, selected: @place_code)
 

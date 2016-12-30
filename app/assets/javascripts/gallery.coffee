@@ -2,8 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
-  $('.selectors').on 'change', ->
+@gallery = {}
+
+class gallery.events
+  @selector_changed = () ->
     if !location.origin
       location.origin = location.protocol + "//" + location.host
 
