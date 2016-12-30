@@ -5,7 +5,7 @@ before_action :set_variables, only: [:index]
     if(!get_params)
       render(:file => 'public/404.html', :status => :not_found, :layout => false)
     end
-    @photos = Photo.find_all(@product, @variety, @place)
+    @photos = Photo.find_all(@product, @variety, @place).page(params[:page])
     @products = Product.all.pluck('name, product_code')
     @varieties = @product.varieties.pluck('name, variety_code') if defined?(@product) && !@product.blank?
     @places = Place.all.pluck('name, place_code')

@@ -21,3 +21,5 @@
   - @photos.each do |photo|
     %article
       = link_to(image_tag(image_path("#{photo.thumbnail_path}")), image_path("#{photo.path}"), class: 'thumbnail', title: "#{photo.variety.name}")
+
+= will_paginate @photos

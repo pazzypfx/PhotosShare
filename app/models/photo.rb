@@ -6,6 +6,8 @@ class Photo < ApplicationRecord
 
   validates_presence_of :path
 
+  self.per_page = 8
+
   def self.find_all(product, variety, place)
     photos = Photo.all
     photos = product.photos if !product.blank?

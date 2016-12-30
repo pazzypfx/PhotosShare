@@ -21,4 +21,4 @@ class gallery.events
     if place == '/none'
       place = ''
 
-    window.location = location.origin + "/gallery/index" + product + variety + place
+    window.location = location.origin + product + variety + place
