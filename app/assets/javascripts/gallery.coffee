@@ -5,7 +5,7 @@
 @gallery = {}
 
 class gallery.events
-  @selector_changed = () ->
+  @selector_changed = (product_changed) ->
     if !location.origin
       location.origin = location.protocol + "//" + location.host
 
@@ -14,7 +14,7 @@ class gallery.events
       product = ''
 
     variety = '/' + $('#variety').val()
-    if variety == '/none' || product == ''
+    if variety == '/none' || product == '' || product_changed == 1
       variety = ''
 
     place = '/' + $('#place').val()
