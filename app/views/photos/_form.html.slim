@@ -1,13 +1,13 @@
 = form_for(photo) do |f|
   - if photo.errors.any?
     #error_explanation
-      %h2
+      h2
         = pluralize(photo.errors.count, 'error')
         prohibited this photo from being saved:
 
-      %ul
+      ul
         - photo.errors.full_messages.each do |message|
-          %li= message
+          li= message
 
   .field
     = f.label :path

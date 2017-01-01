@@ -33,7 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use will_paginate for page pagination
 gem 'will_paginate', '~> 3.1.0'
 
-gem 'haml'
+gem 'slim'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
