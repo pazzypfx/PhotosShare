@@ -8,6 +8,14 @@ class Photo < ApplicationRecord
 
   self.per_page = 8
 
+  def product
+    self.variety.product unless variety.blank?
+  end
+
+  def product=(val)
+
+  end
+
   def self.find_all(product, variety, place)
     photos = Photo.all
     photos = product.photos if !product.blank?

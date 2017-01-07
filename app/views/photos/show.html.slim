@@ -6,15 +6,19 @@ p
 
 p
   strong User:
-  =< @photo.user
+  =< @photo.user.username
+
+p
+  strong Product:
+  =< @photo.product.product_code
 
 p
   strong Variety:
-  =< @photo.variety
+  =< @photo.variety.variety_code
 
 p
   strong Place:
-  =< @photo.place
+  =< @photo.place.name
 
 p
   strong Date:

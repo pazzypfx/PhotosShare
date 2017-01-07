@@ -14,20 +14,22 @@
     = f.text_field :path
 
   .field
-    = f.label :user_id
-    = f.text_field :user_id
+    = f.label :product
+    select[name="product" id="product" class="selectors" onclick="photos.events.product_changed()"]
+      option[value="none"] - All -
+      = options_for_select(@products, selected: @product_code)
 
   .field
     = f.label :variety_id
-    = f.text_field :variety_id
+    = f.select :variety_id, @varieties, {:selected => @variety_id, :prompt => '- select -'}
 
   .field
     = f.label :place_id
-    = f.text_field :place_id
+    = f.select :place_id, @places, {:selected => @place_code, :prompt => '- select -'}
 
   .field
     = f.label :date
-    = f.datetime_select :date
+    = f.datetime_select :date, selected: Date.today, :discard_hour => true
 
   .field
     = f.label :published

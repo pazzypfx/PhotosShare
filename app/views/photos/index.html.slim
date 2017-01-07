@@ -8,6 +8,7 @@ table
       th ID
       th Path
       th User
+      th Product
       th Variety
       th Place
       th Date
@@ -18,9 +19,10 @@ table
       tr
         td = photo.id
         td = photo.path
-        td = photo.user
-        td = photo.variety
-        td = photo.place
+        td = photo.user.username
+        td = photo.product.product_code
+        td = photo.variety.variety_code
+        td = photo.place.name
         td = photo.date
         td = photo.published
         td = link_to 'Show', photo
