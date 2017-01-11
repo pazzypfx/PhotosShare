@@ -1,12 +1,7 @@
 p[id="notice"] = notice
 
 p
-  strong Path:
-  =< @photo.path
-
-p
-  strong User:
-  =< @photo.user.username
+  =< image_tag @photo.path, size: '800x600'
 
 p
   strong Product:
@@ -19,6 +14,10 @@ p
 p
   strong Place:
   =< @photo.place.name
+
+p
+  strong User:
+  =< @photo.user.username
 
 p
   strong Date:

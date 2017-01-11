@@ -7,10 +7,10 @@ table
     tr
       th ID
       th Path
-      th User
       th Product
       th Variety
       th Place
+      th User
       th Date
       th Published
       th[colspan="3"]
@@ -18,11 +18,11 @@ table
     - @photos.each do |photo|
       tr
         td = photo.id
-        td = photo.path
-        td = photo.user.username
+        td = image_tag photo.path, size: 80
         td = photo.product.product_code
         td = photo.variety.variety_code
         td = photo.place.name
+        td = photo.user.username
         td = photo.date
         td = photo.published
         td = link_to 'Show', photo
