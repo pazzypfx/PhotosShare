@@ -87,9 +87,10 @@ class PhotosController < ApplicationController
     end
 
     def get_list_info
+      #todo: use variety_code and place_code to hide the ID from the user
       @products = Product.all.pluck('name, product_code')
       @varieties = Variety.all.pluck('name, id')
-      @places = Place.all.pluck('name, place_code')
+      @places = Place.all.pluck('name, id')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
