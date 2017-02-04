@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220172745) do
+ActiveRecord::Schema.define(version: 20170203195221) do
 
   create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "path"
-    t.string   "thumbnail_path"
     t.integer  "user_id"
     t.integer  "variety_id"
     t.integer  "place_id"

@@ -4,6 +4,8 @@ class Photo < ApplicationRecord
   delegate :product, :to => :variety # eq to: has_one :product, :through => :variety
   belongs_to :place
 
+  mount_uploader :path, PhotoUploader
+
   validates_presence_of :path
 
   self.per_page = 8
