@@ -18,7 +18,7 @@ table
     - @photos.each do |photo|
       tr
         td = photo.id
-        td = image_tag photo.path, size: 80
+        td = image_tag photo.path.thumb.url, size: 80
         td = photo.product.product_code
         td = photo.variety.variety_code
         td = photo.place.name
