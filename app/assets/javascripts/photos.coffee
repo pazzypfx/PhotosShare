@@ -6,8 +6,10 @@
 
 class photos.events
   @product_changed = () ->
-    product = '?product=' + $('#product').val()
-    if product == '?product=none'
-      product = ''
-    window.location = window.location.pathname + product
-    # todo: Use AJAX to do this because there are errors when creating new photos
+    product = $('#product').val()
+    url = window.location.protocol + "//" + window.location.host + '/varieties/' + product
+    $.getJSON url, (data) ->
+      $('#varieties').find('option').remove().end()
+      $('#varieties').append($("<option></option>").text("- Select -"))
+      $.each data, (i, obj) ->
+        $('#varieties').append($('<option>').text(obj.name).attr('value', obj.id))

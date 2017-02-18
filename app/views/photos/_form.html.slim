@@ -16,12 +16,12 @@
   .field
     = f.label :product
     select[name="product" id="product" class="selectors" onclick="photos.events.product_changed()"]
-      option[value="none"] - All -
-      = options_for_select(@products, selected: @product_code)
+      option[value=""] - All -
+      = options_for_select(@products, selected: @product_id)
 
   .field
     = f.label :variety_id
-    = f.select :variety_id, @varieties, {:selected => @variety_id, :prompt => '- select -'}
+    = f.select :variety_id, @varieties, {:selected => @variety_id, :prompt => '- select -'}, id: 'varieties'
 
   .field
     = f.label :place_id
@@ -29,7 +29,7 @@
 
   .field
     = f.label :date
-    = f.datetime_select :date, selected: Date.today, :discard_hour => true
+    = f.datetime_select :date, :discard_hour => true
 
   .field
     = f.label :published
