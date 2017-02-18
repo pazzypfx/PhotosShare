@@ -5,6 +5,7 @@ class VarietiesController < ApplicationController
   # GET /varieties.json
   def index
     @varieties = Variety.all
+    @varieties = Variety.where(product_id: params[:product]) if params[:product]
   end
 
   # GET /varieties/new
