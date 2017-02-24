@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-users = User.create([{ username: 'username1', firstName: 'firstName1', lastName: 'lastName1', email: 'email1', password_digest: 'password1', active: false },
-                     { username: 'username2', firstName: 'firstName2', lastName: 'lastName2', email: 'email2', password_digest: 'password2', active: true  }])
+users = User.create([{ username: 'username1', firstName: 'firstName1', lastName: 'lastName1', email: 'email1', password_digest: User.digest('password1'), active: false },
+                     { username: 'username2', firstName: 'firstName2', lastName: 'lastName2', email: 'email2', password_digest: User.digest('password2'), active: true  }])
 
 products = Product.create([{ name: 'Poivron'  , product_code: 'poivron'   },
                            { name: 'Aubergine', product_code: 'aubergine' },
