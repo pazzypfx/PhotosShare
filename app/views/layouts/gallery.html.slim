@@ -1,10 +1,10 @@
 doctype html
 html
   head
-    title Admin
+    title Gallery Share
     = csrf_meta_tags
 
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'gallery', 'data-turbolinks-track': 'reload'
 
   body
     | <!-- Main -->
@@ -21,4 +21,4 @@ html
               | HTML5 UP
 
     | <!-- Scripts -->
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'gallery', 'data-turbolinks-track': 'reload'

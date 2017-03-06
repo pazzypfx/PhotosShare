@@ -1,5 +1,6 @@
 class GalleryController < ApplicationController
-before_action :set_variables, only: [:index]
+  layout 'gallery'
+  before_action :set_variables, only: [:index]
 
   def index
     if(!get_params)
