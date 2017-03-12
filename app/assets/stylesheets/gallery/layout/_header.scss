@@ -17,4 +17,12 @@
 			font-size: 2.25em;
 			font-weight: _font(weight-bold);
 		}
+
+		.selector {
+			text-align: left;
+
+			select {
+				height: 1.75em;
+			}
+		}
 	}

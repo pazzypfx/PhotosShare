@@ -11,11 +11,14 @@
 /* Footer */
 
 	#footer {
-		@include padding(2.25em, 2.25em);
+		@include padding(0em, 2.25em);
+		backgroud-color: #efefef;
+		text-align: center;
 
 		.copyright {
 			list-style: none;
 			padding: 0;
+			margin: 5px;
 
 			li {
 				display: inline-block;

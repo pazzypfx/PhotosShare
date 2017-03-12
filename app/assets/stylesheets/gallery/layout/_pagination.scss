@@ -1,0 +1,14 @@
+@import '../libs/vars';
+@import '../libs/functions';
+@import '../libs/mixins';
+
+/* Paginate */
+
+	.pagination {
+		margin-top: 15px;
+		text-align: center;
+
+		.current {
+			color: #00D3B7;
+		}
+    }
