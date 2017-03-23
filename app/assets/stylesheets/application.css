@@ -12,6 +12,8 @@
  *
  *= require photos
  *= require users
- *= require scaffolds
+ * require scaffolds
  *= require_self
+ *= require gentelella
+ *= require gentelella-custom
  */

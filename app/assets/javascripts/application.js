@@ -16,3 +16,5 @@
 //= require photos
 //= require users
 //= require cable
+//= require gentelella
+//= require gentelella-custom
