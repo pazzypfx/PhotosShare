@@ -1,29 +1,37 @@
-p[id="notice"] = notice
+- content_for :page_title do
+  | Show a Use
 
-p
-  strong Username:
-  =< @user.username
+= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning btn-lg'
+= link_to 'Back', users_path, class: 'btn btn-info btn-lg'
 
-p
-  strong Firstname:
-  =< @user.firstName
+.ln_solid
 
-p
-  strong Lastname:
-  =< @user.lastName
+form class="form-horizontal"
 
-p
-  strong Email:
-  =< @user.email
+  .form-group
+    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Username
+    div class="col-md-6 col-sm-6 col-xs-12"
+      input type="text" class="form-control" disabled="disabled" value="#{@user.username}"
 
-p
-  strong Password digest:
-  =< @user.password_digest
+  .form-group
+    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" First name
+    div class="col-md-6 col-sm-6 col-xs-12"
+      input type="text" class="form-control" disabled="disabled" value="#{@user.firstName}"
 
-p
-  strong Active:
-  =< @user.active
+  .form-group
+    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Last name
+    div class="col-md-6 col-sm-6 col-xs-12"
+      input type="text" class="form-control" disabled="disabled" value="#{@user.lastName}"
 
-=> link_to 'Edit', edit_user_path(@user)
-| |
-=< link_to 'Back', users_path
+  .form-group
+    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Email
+    div class="col-md-6 col-sm-6 col-xs-12"
+      input type="text" class="form-control" disabled="disabled" value="#{@user.email}"
+
+  .form-group
+    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Active
+    div class="col-md-6 col-sm-6 col-xs-12"
+      - if @user.active?
+        input type="checkbox" class="js-switch" disabled="disabled" checked="checked"
+      - else
+        input type="checkbox" class="js-switch" disabled="disabled"

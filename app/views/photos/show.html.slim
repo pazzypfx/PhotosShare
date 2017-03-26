@@ -1,32 +1,45 @@
-p[id="notice"] = notice
+- content_for :page_title do
+  | Show Photo
 
-p
-  =< image_tag @photo.path.normal.url, size: '1200x900'
+= link_to 'Edit', edit_photo_path(@photo), class: 'btn btn-warning btn-lg'
+= link_to 'Back', photos_path, class: 'btn btn-info btn-lg'
 
-p
-  strong Product:
-  =< @photo.product.product_code
+div class="col-md-8 col-sm-12 col-xs-12"
+  =< image_tag @photo.path.normal.url, style: 'height: 100%; width: 100%; object-fit: contain'
 
-p
-  strong Variety:
-  =< @photo.variety.variety_code
 
-p
-  strong Place:
-  =< @photo.place.name
+div class="col-md-4 col-sm-12 col-xs-12"
+  .ln_solid
+  form class="form-horizontal"
+    .form-group
+      label class="control-label col-md-3 col-sm-5 col-xs-6" Product
+      div class="col-md-9 col-sm-7 col-xs-6"
+        input type="text" class="form-control" disabled="disabled" value="#{@photo.product.product_code}"
 
-p
-  strong User:
-  =< @photo.user.username
+    .form-group
+      label class="control-label col-md-3 col-sm-5 col-xs-6" Variety
+      div class="col-md-9 col-sm-7 col-xs-6"
+        input type="text" class="form-control" disabled="disabled" value="#{@photo.variety.variety_code}"
 
-p
-  strong Date:
-  =< @photo.date
+    .form-group
+      label class="control-label col-md-3 col-sm-5 col-xs-6" Place
+      div class="col-md-9 col-sm-7 col-xs-6"
+        input type="text" class="form-control" disabled="disabled" value="#{@photo.place.name}"
 
-p
-  strong Published:
-  =< @photo.published
+    .form-group
+      label class="control-label col-md-3 col-sm-5 col-xs-6" User
+      div class="col-md-9 col-sm-7 col-xs-6"
+        input type="text" class="form-control" disabled="disabled" value="#{@photo.user.username}"
 
-=> link_to 'Edit', edit_photo_path(@photo)
-| |
-=< link_to 'Back', photos_path
+    .form-group
+      label class="control-label col-md-3 col-sm-5 col-xs-6" Date
+      div class="col-md-9 col-sm-7 col-xs-6"
+        input type="text" class="form-control" disabled="disabled" value="#{@photo.date}"
+
+    .form-group
+      label class="control-label col-md-3 col-sm-5 col-xs-6" Published
+      div class="col-md-9 col-sm-7 col-xs-6"
+        - if @photo.published?
+          input type="checkbox" class="js-switch" disabled="disabled" checked="checked"
+        -else
+          input type="checkbox" class="js-switch" disabled="disabled"

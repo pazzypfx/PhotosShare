@@ -2552,7 +2552,11 @@ if (typeof NProgress != 'undefined') {
 				  };
 				}();
 
-				$('#datatable').dataTable();
+				$('#datatable').dataTable({
+				    drawCallback: function(){
+				        $("img.lazy").lazyload();
+ 				    }
+ 				});
 
 				$('#datatable-keytable').DataTable({
 				  keys: true

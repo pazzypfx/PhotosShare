@@ -1,8 +1,9 @@
-p[id="notice"] = notice
+- content_for :page_title do
+  | List of Photos
 
-h1 Photos
+= link_to 'New Photo', new_photo_path, class: 'btn btn-info btn-lg pull-right'
 
-table
+table id="datatable" class="table table-striped table-bordered"
   thead
     tr
       th ID
@@ -13,22 +14,21 @@ table
       th User
       th Date
       th Published
-      th[colspan="3"]
+      th
+      th
+      th
   tbody
     - @photos.each do |photo|
       tr
         td = photo.id
-        td = image_tag photo.path.thumb.url, size: 80
+        td
+          img class="lazy" with="40" height="40" data-original== "#{photo.path.thumb.url}"
         td = photo.product.product_code
         td = photo.variety.variety_code
         td = photo.place.name
         td = photo.user.username
         td = photo.date
         td = photo.published
-        td = link_to 'Show', photo
-        td = link_to 'Edit', edit_photo_path(photo)
-        td = link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }
-
-br
-
-= link_to 'New Photo', new_photo_path
+        td = link_to 'Show', photo, class: 'btn btn-success'
+        td = link_to 'Edit', edit_photo_path(photo), class: 'btn btn-warning'
+        td = link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
