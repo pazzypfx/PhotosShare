@@ -1,0 +1,24 @@
+- content_for :page_title do
+  | Show a Product
+
+= link_to 'Edit', edit_variety_path(@variety), class: 'btn btn-warning btn-lg'
+= link_to 'Back', varieties_path, class: 'btn btn-info btn-lg'
+
+.ln_solid
+
+form class="form-horizontal"
+
+  .form-group
+    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Product
+    div class="col-md-6 col-sm-6 col-xs-12"
+      input type="text" class="form-control" disabled="disabled" value="#{@product.product_code}"
+
+  .form-group
+    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Variety Code
+    div class="col-md-6 col-sm-6 col-xs-12"
+      input type="text" class="form-control" disabled="disabled" value="#{@variety.variety_code}"
+
+  .form-group
+    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Name
+    div class="col-md-6 col-sm-6 col-xs-12"
+      input type="text" class="form-control" disabled="disabled" value="#{@variety.name}"

@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :set_place, only: [:edit, :update, :destroy]
+  before_action :set_place, only: [:show, :edit, :update, :destroy]
 
   # GET /places
   # GET /places.json
@@ -9,7 +9,12 @@ class PlacesController < ApplicationController
 
   # GET /places/new
   def new
-    @place = Places.new
+    @place = Place.new
+  end
+
+  # GET /places/1
+  # GET /places/1.json
+  def show
   end
 
   # GET /places/1/edit

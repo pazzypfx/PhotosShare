@@ -1,0 +1,24 @@
+- content_for :page_title do
+  | List of Places
+
+= link_to 'New Place', new_place_path, class: 'btn btn-info btn-lg pull-right'
+
+table id="datatable" class="table table-striped table-bordered datatable-lazyload"
+  thead
+    tr
+      th ID
+      th Name
+      th Place Code
+      th
+      th
+      th
+
+  tbody
+    - @places.each do |place|
+      tr
+        td = place.id
+        td = place.name
+        td = place.place_code
+        td = link_to 'Show', place, class: 'btn btn-success'
+        td = link_to 'Edit', edit_place_path(place), class: 'btn btn-warning'
+        td = link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

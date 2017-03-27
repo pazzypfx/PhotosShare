@@ -1,0 +1,7 @@
+- content_for :page_title do
+  | New Place
+
+- content_for :cancel_button do
+  = link_to 'Back', places_path, class: 'btn btn-primary'
+
+= render 'form', place: @place

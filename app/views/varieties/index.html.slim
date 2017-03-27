@@ -1,0 +1,26 @@
+- content_for :page_title do
+  | List of Products
+
+= link_to 'New Variety', new_variety_path, class: 'btn btn-info btn-lg pull-right'
+
+table id="datatable" class="table table-striped table-bordered datatable-lazyload"
+  thead
+    tr
+      th ID
+      th Variety Code
+      th Name
+      th Product
+      th
+      th
+      th
+
+  tbody
+    - @varieties.each do |variety|
+      tr
+        td = variety.id
+        td = variety.variety_code
+        td = variety.name
+        td = variety.product.product_code
+        td = link_to 'Show', variety, class: 'btn btn-success'
+        td = link_to 'Edit', edit_variety_path(variety), class: 'btn btn-warning'
+        td = link_to 'Destroy', variety, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

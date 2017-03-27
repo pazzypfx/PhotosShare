@@ -1,0 +1,7 @@
+- content_for :page_title do
+  | New Product
+
+- content_for :cancel_button do
+  = link_to 'Back', products_path, class: 'btn btn-primary'
+
+= render 'form', prod: @product

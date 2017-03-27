@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :photos
   resources :users
   resources :products
-  get 'varieties/:product', to: 'varieties#index'
+  #get 'varieties/:product', to: 'varieties#index'
   resources :varieties
   resources :places
 

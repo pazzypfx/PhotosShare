@@ -1,5 +1,6 @@
 class VarietiesController < ApplicationController
-  before_action :set_variety, only: [:edit, :update, :destroy]
+  before_action :set_variety, only: [:show, :edit, :update, :destroy]
+  before_action :set_products, execpt: [:index]
 
   # GET /varieties
   # GET /varieties.json
@@ -13,6 +14,11 @@ class VarietiesController < ApplicationController
     @variety = Variety.new
   end
 
+  # GET /varieties/1
+  # GET /varieties/1.json
+  def show
+  end
+
   # GET /varieties/1/edit
   def edit
   end
@@ -21,6 +27,7 @@ class VarietiesController < ApplicationController
   # POST /varieties.json
   def create
     @variety = Variety.new(variety_params)
+    @product_id = params[:variety][:product_id]
 
     respond_to do |format|
       if @variety.save
@@ -61,10 +68,17 @@ class VarietiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_variety
       @variety = Variety.find(params[:id])
+      @product = @variety.product
+      @product_id = @product.id
+    end
+
+    def set_products
+      @products = Product.all.pluck('name, id')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def variety_params
-      params.require(:variety).permit(:name, :variety_code, :product)
+      params.require(:variety).permit(:name, :variety_code, :product_id)
     end
+
 end
