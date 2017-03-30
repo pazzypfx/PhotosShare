@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20170203195221) do
 
-  create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "photos", force: :cascade do |t|
     t.string   "path"
     t.integer  "user_id"
     t.integer  "variety_id"
@@ -26,21 +29,21 @@ ActiveRecord::Schema.define(version: 20170203195221) do
     t.index ["variety_id"], name: "index_photos_on_variety_id", using: :btree
   end
 
-  create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "places", force: :cascade do |t|
     t.string   "name"
     t.integer  "place_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "product_code"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "firstName"
     t.string   "lastName"
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 20170203195221) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
-  create_table "varieties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "varieties", force: :cascade do |t|
     t.string   "name"
     t.string   "variety_code"
     t.integer  "product_id"
