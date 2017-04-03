@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  app:
+    image: psa/photos_share:0.1
+    volumes:
+      - ./file_storage:/usr/src/photosShare/public/uploads
+    environment:
+      - SECRET_KEY_BASE

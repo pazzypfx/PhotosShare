@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+  db:
+    image: postgres
+    env_file: .env
+    volumes:
+      - db-data:/var/lib/postgresql/db-data
+
+  app:
+    command: bundle exec puma -C config/puma.rb
+    env_file: .env
+    ports:
+      - "3000"
+    depends_on:
+      - db
+
+  db_backup:
+      image: equinoxone/postgres_backup:0.1
+      depends_on:
+        - db
+      volumes:
+        - ./backup:/backup
+      environment:
+    #    - PGUSER=postgres
+    #    - PGPASSWORD=
+    #    - PGPORT=5432
+    #    - PGHOST=db
+        - PGDATABASE=gallery
+
+volumes:
+  db-data:
+    external: false
