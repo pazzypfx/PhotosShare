@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+  resources :sessions
+
   resources :photos
   resources :users
   resources :products
@@ -13,4 +17,5 @@ Rails.application.routes.draw do
 
   get 'gallery/show/:id', to: 'gallery#show'
   match '(/:name1(/:name2(/:name3)))', to: 'gallery#index', via: :get, as: :gallery
+
 end
