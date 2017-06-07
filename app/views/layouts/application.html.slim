@@ -4,7 +4,10 @@ html
     title Admin
     = csrf_meta_tags
 
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    - if content_for? :css
+      = yield(:css)
+    - else
+        = stylesheet_link_tag 'application', media: 'all', :'data-turbolinks-track' => 'reload'
 
   body
     | <!-- Main -->
@@ -21,4 +24,7 @@ html
               | HTML5 UP
 
     | <!-- Scripts -->
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    - if content_for? :javascript
+      = yield(:javascript)
+    - else
+      = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
