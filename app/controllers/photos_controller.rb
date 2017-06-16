@@ -51,7 +51,7 @@ class PhotosController < ApplicationController
         format.json { render :show, status: :ok, location: @photo }
       else
         format.html { render :edit }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
+        format.json { render json: [id: @photo.id, errors: @photo.errors], status: :unprocessable_entity }
       end
     end
   end

@@ -28,7 +28,12 @@ table id="datatable" class="table table-striped table-bordered"
         td = photo.place.name
         td = photo.user.username
         td = photo.date
-        td = photo.published
+        td
+          - if photo && photo.published?
+            input type='checkbox' class='js-switch' checked='checked' value="#{photo.id}"
+          - else
+            input type='checkbox' class='js-switch' value="#{photo.id}"
+          i class="fa fa-spinner fa-spin" id="spinner_#{photo.id}"
         td = link_to 'Show', photo, class: 'btn btn-success'
         td = link_to 'Edit', edit_photo_path(photo), class: 'btn btn-warning'
         td = link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
