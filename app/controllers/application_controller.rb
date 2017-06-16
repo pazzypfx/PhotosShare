@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     helper_method :require_login
 
     def warden
-      env['warden']
+      request.env['warden']
     end
 
     def set_photo_params

@@ -1,4 +1,4 @@
-FROM ruby:2.3.3
+FROM ruby:2.4.1
 
 MAINTAINER A. Boudi <abr.boudi@gmail.com>
 
@@ -17,6 +17,3 @@ RUN bundle install
 COPY . .
 
 VOLUME ["$INSTALL_PATH/public"]
-
-EXPOSE 3000
-CMD puma -C config/puma.rb
