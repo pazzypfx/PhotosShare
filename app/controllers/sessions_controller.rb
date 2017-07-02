@@ -8,6 +8,10 @@ class SessionsController < ApplicationController
 
   def create
     warden.authenticate!
+    if current_user.username == 'admin'
+      redirect_to photos_path, notice:  'Logged In!'
+      return
+    end
     redirect_to root_url, notice: 'Logged In!'
   end
 

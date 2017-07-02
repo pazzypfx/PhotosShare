@@ -1,12 +1,18 @@
 class GalleryController < ApplicationController
   layout 'gallery'
+  layout 'application', only: [:new]
   before_action :set_variables, only: [:index]
+  before_action :get_lists_info,  only: [:new, :create]
+  before_action :set_photo_params, except:  [:new, :create]
+
+  WillPaginate.per_page = 6
 
   def index
     if(!get_params)
       render(:file => 'public/404.html', :status => :not_found, :layout => false)
     end
-    @photos = Photo.find_all(@product, @variety, @place).page(params[:page])
+    @photos = Photo.find_all(@product, @variety, @place).paginate(page: params[:page], per_page: 6)
+    @photos = @photos.where(published: true)
     @products = Product.all.pluck('name, product_code')
     @varieties = @product.varieties.pluck('name, variety_code') if defined?(@product) && !@product.blank?
     @places = Place.all.pluck('name, place_code')
@@ -16,7 +22,27 @@ class GalleryController < ApplicationController
     @photo = Photo.find(params[:id])
   end
 
+  def new
+    @photo = Photo.new
+  end
+
+  def create
+    @photo = Photo.new(photo_params)
+    @photo.user = current_user
+
+    respond_to do |format|
+      if @photo.save
+        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
+        format.json { render :show, status: :created, location: @photo }
+      else
+        format.html { render :new }
+        format.json { render json: @photo.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
+
     # Set the variables if defined in url or to empty if not
     def set_variables
       # Set selected product, variety, and place to nil
@@ -64,6 +90,11 @@ class GalleryController < ApplicationController
       return 2 if Variety.exists?({variety_code: name})
       return 3 if Place.exists? ({place_code: name})
       return 0
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def photo_params
+      params.require(:photo).permit(:path, :variety_id, :place_id, :date, :published, :product)
     end
 
 end
