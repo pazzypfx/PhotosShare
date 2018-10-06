@@ -1,16 +1,10 @@
-version: '2'
+version: '3.6'
 
 services:
   app:
     build: .
-    volumes:
-      - .:/usr/src/photosShare
-      - ./public/uploads:/usr/src/photosShare/public/uploads
     ports:
-          - 3000:3000
+      - '3000:3000'
 
   db_backup:
       command: /bin/true
-
-volumes:
-  uploads: {}
