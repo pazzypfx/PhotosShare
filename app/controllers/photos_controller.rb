@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :get_lists_info,  except: [:index, :show]
+  before_action :lists_info, except: [:index, :show]
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
   before_action :set_photo_params, except:  [:index, :show]
 

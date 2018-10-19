@@ -16,12 +16,10 @@ class VarietiesController < ApplicationController
 
   # GET /varieties/1
   # GET /varieties/1.json
-  def show
-  end
+  def show; end
 
   # GET /varieties/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /varieties
   # POST /varieties.json
@@ -65,20 +63,21 @@ class VarietiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_variety
-      @variety = Variety.find(params[:id])
-      @product = @variety.product
-      @product_id = @product.id
-    end
 
-    def set_products
-      @products = Product.all.pluck('name, id')
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_variety
+    @variety = Variety.find(params[:id])
+    @product = @variety.product
+    @product_id = @product.id
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def variety_params
-      params.require(:variety).permit(:name, :variety_code, :product_id)
-    end
+  def set_products
+    @products = Product.all.pluck('name, id')
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def variety_params
+    params.require(:variety).permit(:name, :variety_code, :product_id)
+  end
 
 end
