@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_load_and_authorize_resource
   layout false
   skip_before_action :require_login, only: [:new, :create]
 

@@ -1,4 +1,5 @@
 class GalleryController < ApplicationController
+  skip_load_and_authorize_resource
   layout 'gallery'
   before_action :set_variables, only: [:index]
 

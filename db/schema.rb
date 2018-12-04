@@ -10,58 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203195221) do
+ActiveRecord::Schema.define(version: 2018_12_04_173924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "photos", force: :cascade do |t|
-    t.string   "path"
-    t.integer  "user_id"
-    t.integer  "variety_id"
-    t.integer  "place_id"
+  create_table "photos", id: :serial, force: :cascade do |t|
+    t.string "path"
+    t.integer "user_id"
+    t.integer "variety_id"
+    t.integer "place_id"
     t.datetime "date"
-    t.boolean  "published"
+    t.boolean "published"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["place_id"], name: "index_photos_on_place_id", using: :btree
-    t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
-    t.index ["variety_id"], name: "index_photos_on_variety_id", using: :btree
+    t.index ["place_id"], name: "index_photos_on_place_id"
+    t.index ["user_id"], name: "index_photos_on_user_id"
+    t.index ["variety_id"], name: "index_photos_on_variety_id"
   end
 
-  create_table "places", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "place_code"
+  create_table "places", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.integer "place_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.string   "product_code"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "products", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "product_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "firstName"
-    t.string   "lastName"
-    t.string   "email"
-    t.string   "password_digest"
-    t.boolean  "active"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "username"
+    t.string "firstName"
+    t.string "lastName"
+    t.string "email"
+    t.string "password_digest"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "role"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  create_table "varieties", force: :cascade do |t|
-    t.string   "name"
-    t.string   "variety_code"
-    t.integer  "product_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["product_id"], name: "index_varieties_on_product_id", using: :btree
+  create_table "varieties", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "variety_code"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_varieties_on_product_id"
   end
 
   add_foreign_key "photos", "places"
