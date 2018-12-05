@@ -7,6 +7,8 @@ class Ability
     #   user ||= User.new # guest user (not logged in)
     if user.admin?
       can :manage, :all
+    elsif user.manager?
+      can :manage, :all # TODO: Delete multi-tenancy stuff
     else
       can :read, :all
       can :create, Photo

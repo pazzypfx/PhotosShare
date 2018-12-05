@@ -4,12 +4,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   resources :sessions
 
-  resources :photos
-  resources :users
-  resources :products
-  #get 'varieties/:product', to: 'varieties#index'
-  resources :varieties
-  resources :places
+  scope :admin do
+    resources :users, :photos, :products, :varieties, :places
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
