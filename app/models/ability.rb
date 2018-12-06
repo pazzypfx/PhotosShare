@@ -8,9 +8,12 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.manager?
-      can :manage, :all # TODO: Delete multi-tenancy stuff
+      # TODO: Delete multi-tenancy stuff
+      can :manage, [Photo, Place, Product, Variety]
+      can %i[read create update], User, role: %i[manager agent]
+      can :destroy, User, role: :agent
     else
-      can :read, :all
+      can :read, [Photo, Place, Product, Variety]
       can :create, Photo
       can :update, Photo, user_id: user.id
     end
