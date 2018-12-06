@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   skip_load_and_authorize_resource
   layout false
   skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :authorize_admin_manager
 
   def new
     flash.now.alert = warden.message if warden.message.present?
