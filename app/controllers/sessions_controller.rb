@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
 
   def create
     warden.authenticate!
+    redirect_to photos_url and return unless current_user.agent?
     redirect_to root_url, notice: 'Logged In!'
   end
 
