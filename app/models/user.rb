@@ -15,4 +15,6 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+  enum role: %i[admin manager agent]
+
 end

@@ -3,9 +3,7 @@ class PlacesController < ApplicationController
 
   # GET /places
   # GET /places.json
-  def index
-    @places = Place.all
-  end
+  def index; end
 
   # GET /places/new
   def new
@@ -14,12 +12,10 @@ class PlacesController < ApplicationController
 
   # GET /places/1
   # GET /places/1.json
-  def show
-  end
+  def show; end
 
   # GET /places/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /places
   # POST /places.json

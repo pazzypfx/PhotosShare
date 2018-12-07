@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
+  load_and_authorize_resource
   layout 'admin'
   protect_from_forgery with: :exception
   before_action :require_login
+  before_action :authorize_admin_manager
 
   private
 
@@ -22,6 +24,14 @@ class ApplicationController < ActionController::Base
 
   def warden
     request.env['warden']
+  end
+
+  def authorize_admin_manager
+    unless current_user.admin? || current_user.manager?
+      flash[:error] = "unauthorized access"
+      redirect_back fallback_location: root_path
+      false
+    end
   end
 
   def set_photo_params

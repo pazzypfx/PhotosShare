@@ -1,6 +1,8 @@
 class GalleryController < ApplicationController
+  skip_load_and_authorize_resource
   layout 'gallery'
   before_action :set_variables, only: [:index]
+  skip_before_action :authorize_admin_manager
 
   def index
     render(file: 'public/404.html', status: :not_found, :layout => false) unless get_params

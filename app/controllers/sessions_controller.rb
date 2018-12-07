@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
+  skip_load_and_authorize_resource
   layout false
   skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :authorize_admin_manager
 
   def new
     flash.now.alert = warden.message if warden.message.present?
@@ -8,6 +10,7 @@ class SessionsController < ApplicationController
 
   def create
     warden.authenticate!
+    redirect_to photos_url and return unless current_user.agent?
     redirect_to root_url, notice: 'Logged In!'
   end
 
