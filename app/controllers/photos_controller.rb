@@ -5,14 +5,11 @@ class PhotosController < ApplicationController
 
   # GET /photos
   # GET /photos.json
-  def index
-    @photos = Photo.all
-  end
+  def index; end
 
   # GET /photos/1
   # GET /photos/1.json
-  def show
-  end
+  def show; end
 
   # GET /photos/new
   def new
@@ -20,8 +17,7 @@ class PhotosController < ApplicationController
   end
 
   # GET /photos/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /photos
   # POST /photos.json
