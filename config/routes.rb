@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'gallery#index'
-
   get 'gallery/show/:id', to: 'gallery#show'
-  match '(/:name1(/:name2(/:name3)))', to: 'gallery#index', via: :get, as: :gallery
 
 end

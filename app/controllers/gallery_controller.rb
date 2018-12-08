@@ -37,9 +37,9 @@ class GalleryController < ApplicationController
 
   def get_params
     exists = true
-    exists &= set_param(params[:name1]) if params[:name1].present?
-    exists &= set_param(params[:name2]) if params[:name2].present?
-    exists &= set_param(params[:name3]) if params[:name3].present?
+    exists &= set_param(params[:product]) if params[:product].present?
+    exists &= set_param(params[:variety]) if params[:variety].present?
+    exists &= set_param(params[:place]) if params[:place].present?
     exists
   end
 

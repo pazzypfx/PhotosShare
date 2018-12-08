@@ -13,16 +13,16 @@ class gallery.events
     if !location.origin
       location.origin = location.protocol + "//" + location.host
 
-    product = '/' + $('#product').val()
-    if product == '/none'
+    product = 'product=' + $('#product').val() + '&'
+    if product == 'product=none&'
       product = ''
 
-    variety = '/' + $('#variety').val()
-    if variety == '/none' || product == '' || product_changed == 1
+    variety = 'variety=' + $('#variety').val() + '&'
+    if variety == 'variety=none&' || product == '' || product_changed == 1
       variety = ''
 
-    place = '/' + $('#place').val()
-    if place == '/none'
+    place = 'place=' + $('#place').val()
+    if place == 'place=none'
       place = ''
 
-    window.location = location.origin + product + variety + place
+    window.location = location.origin + '?' + product + variety + place
