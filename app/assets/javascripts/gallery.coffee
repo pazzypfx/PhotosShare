@@ -21,8 +21,18 @@ class gallery.events
     if variety == 'variety=none&' || product == '' || product_changed == 1
       variety = ''
 
-    place = 'place=' + $('#place').val()
-    if place == 'place=none'
+    place = 'place=' + $('#place').val() + '&'
+    if place == 'place=none&'
       place = ''
 
-    window.location = location.origin + '?' + product + variety + place
+    ageMin = $('#ageMin').val()
+    if ageMin == 'none'
+      ageMin = ''
+    ageMax = $('#ageMax').val()
+    if ageMax == 'none'
+      ageMax = ''
+    age = 'age=' + ageMin + ',' + ageMax
+    if ageMax == '' && ageMin == ''
+      age = ''
+
+    window.location = location.origin + '?' + product + variety + place + age

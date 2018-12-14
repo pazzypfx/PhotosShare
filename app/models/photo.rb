@@ -23,4 +23,21 @@ class Photo < ApplicationRecord
     photos = photos.where(place: place) unless place.blank?
     return photos
   end
+
+  def self.filter_by_ages(lower, upper)
+    photos = self
+    photos = photos.where('age <= ?', upper) unless upper.blank?
+    photos = photos.where('age >= ?', lower) unless lower.blank?
+    return photos
+  end
+
+  enum ages:
+    {
+      '3 months': 3,
+      '6 months': 6,
+      '9 months': 9,
+      '12 months': 12,
+      '15 months': 15,
+      '18 months': 18,
+    }
 end

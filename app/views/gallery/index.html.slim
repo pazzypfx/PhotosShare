@@ -21,6 +21,22 @@ header id="header"
       option[value="none"] - All -
       = options_for_select(@places, selected: @place_code)
 
+  .selector
+    | Age:
+    .multi-selector
+      span style="float: left;width: 12%;" Min
+
+      select[name="ageMin" id="ageMin" class="selectors" onclick="gallery.events.selector_changed(0)" style="width: 37%;float: left;"]
+        option[value="none"] - All -
+        = options_for_select(@ages, selected: @age1)
+
+      span style="float: left;margin-left: 2px;width: 13%;" Max
+
+      select[name="ageMax" id="ageMax" class="selectors" onclick="gallery.events.selector_changed(0)" style="width: 37%;float: left"]
+        option[value="none"] - All -
+        = options_for_select(@ages, selected: @age2)
+    div style="clear:both"
+
 | <!-- Thumbnail -->
 section[id="thumbnails"]
   - @photos.each do |photo|

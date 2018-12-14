@@ -5,11 +5,11 @@ class GalleryController < ApplicationController
   skip_before_action :authorize_admin_manager
 
   def index
-    render(file: 'public/404.html', status: :not_found, :layout => false) unless get_params
-    @photos = Photo.find_all(@product, @variety, @place).page(params[:page])
-    @products = Product.pluck('name, product_code')
+    render(file: 'public/404.html', status: :not_found, layout: false) unless get_params
+    @photos = Photo.find_all(@product, @variety, @place)
+                   .filter_by_ages(@age1, @age2)
+                   .page(params[:page])
     @varieties = @product.varieties.pluck('name, variety_code') if defined?(@product) && !@product.blank?
-    @places = Place.pluck('name, place_code')
   end
 
   def show
@@ -27,12 +27,15 @@ class GalleryController < ApplicationController
     @variety_code = ''
     @place = nil
     @place_code = ''
+    @age1 = nil
+    @age2 = nil
 
     # Set products, varieties, places to empty
-    @products = []
+    @products = Product.pluck('name, product_code')
     @varieties = []
-    @places = []
+    @places = Place.pluck('name, place_code')
     @photos = []
+    @ages = Photo.ages
   end
 
   def get_params
@@ -40,6 +43,7 @@ class GalleryController < ApplicationController
     exists &= set_param(params[:product]) if params[:product].present?
     exists &= set_param(params[:variety]) if params[:variety].present?
     exists &= set_param(params[:place]) if params[:place].present?
+    set_dates(params[:age]) if params[:age].present?
     exists
   end
 
@@ -67,4 +71,9 @@ class GalleryController < ApplicationController
     0
   end
 
+  def set_dates(param)
+    ages = param.split(",").map(&:to_i).sort
+    return if ages.sum.zero?
+    @age1, @age2 = ages
+  end
 end
