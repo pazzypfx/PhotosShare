@@ -44,3 +44,8 @@ section[id="thumbnails"]
       = link_to(image_tag(image_path("#{photo.path.thumb.url}")), image_path("#{photo.path.normal.url}"), class: 'thumbnail', title: "#{photo.variety.name}")
 
 = will_paginate @photos, inner_window: 2
+
+- if current_user.agent?
+  br
+  .align-center
+    = button_to 'Logout', logout_path, method: :get
