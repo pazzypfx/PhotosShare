@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   resources :sessions
@@ -12,5 +11,4 @@ Rails.application.routes.draw do
 
   root 'gallery#index'
   get 'gallery/show/:id', to: 'gallery#show'
-
 end

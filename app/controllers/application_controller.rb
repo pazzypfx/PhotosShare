@@ -1,3 +1,4 @@
+# Main controller used to check users and fetch needed data
 class ApplicationController < ActionController::Base
   load_and_authorize_resource
   layout 'admin'
@@ -27,15 +28,15 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_admin_manager
-    unless current_user.admin? || current_user.manager?
-      flash[:error] = "unauthorized access"
-      redirect_back fallback_location: root_path
-      false
-    end
+    return true if current_user.admin? || current_user.manager?
+    flash[:error] = 'unauthorized access'
+    redirect_back fallback_location: root_path
+    false
   end
+  helper_method :authorize_admin_manager
 
   def set_photo_params
-    unless @photo.blank?
+    if @photo.present?
       @product = @photo.product
       @product_id = @product.id
       @varieties = @product.varieties.pluck('name, id')
@@ -43,15 +44,14 @@ class ApplicationController < ActionController::Base
       @place_code = @photo.place.place_code
       return
     end
-    unless params[:product].blank?
-      @product = Product.find_by_id(params[:product])
-      @product_id = @product.id unless @product.blank?
-      @varieties = @product.varieties.pluck('name, id') unless @product.blank?
+    if params[:product].present?
+      @product = Product.find_by(id: params[:product])
+      @product_id = @product.id if @product.present?
+      @varieties = @product.varieties.pluck('name, id') if @product.present?
     end
-    unless params[:photo].blank?
-      @variety_id = params[:photo][:variety_id]
-      @place_code = params[:photo][:place_id]
-    end
+    return if params[:photo].blank?
+    @variety_id = params[:photo][:variety_id]
+    @place_code = params[:photo][:place_id]
   end
 
   def lists_info
@@ -60,5 +60,4 @@ class ApplicationController < ActionController::Base
     @varieties = Variety.all.pluck('name, id')
     @places = Place.all.pluck('name, id')
   end
-
 end

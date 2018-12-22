@@ -1,7 +1,8 @@
+# Controller for Photo management by admins and managers
 class PhotosController < ApplicationController
-  before_action :lists_info, except: [:index, :show]
-  before_action :set_photo, only: [:show, :edit, :update, :destroy]
-  before_action :set_photo_params, except:  [:index, :show]
+  before_action :lists_info, except: %i[index show]
+  before_action :init_photo, only: %i[show edit update destroy]
+  before_action :set_photo_params, except: %i[index show]
 
   # GET /photos
   # GET /photos.json
@@ -23,8 +24,7 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @photo = Photo.new(photo_params)
-
-    # todo: get current user to affect to the added photo
+    # TODO: get current user to affect to the added photo
     @photo.user = User.find(1)
 
     respond_to do |format|
@@ -63,14 +63,15 @@ class PhotosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_photo
-      @photo = Photo.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def photo_params
-      params.require(:photo).permit(:path, :variety_id, :place_id, :date, :published, :product)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def init_photo
+    @photo = Photo.find(params[:id])
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def photo_params
+    params.require(:photo).permit(:path, :variety_id, :place_id, :date,
+                                  :published, :product)
+  end
 end

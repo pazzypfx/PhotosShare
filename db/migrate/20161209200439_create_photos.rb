@@ -10,6 +10,6 @@ class CreatePhotos < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    #add_index :photos, :path, unique: true
+    # add_index :photos, :path, unique: true
   end
 end

@@ -1,6 +1,7 @@
+# Controller for Varieties management
 class VarietiesController < ApplicationController
-  before_action :set_variety, only: [:show, :edit, :update, :destroy]
-  before_action :set_products, execpt: [:index]
+  before_action :init_variety, only: %i[show edit update destroy]
+  before_action :init_products, execpt: :index
 
   # GET /varieties
   # GET /varieties.json
@@ -65,19 +66,17 @@ class VarietiesController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_variety
+  def init_variety
     @variety = Variety.find(params[:id])
     @product = @variety.product
     @product_id = @product.id
   end
 
-  def set_products
+  def init_products
     @products = Product.all.pluck('name, id')
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def variety_params
     params.require(:variety).permit(:name, :variety_code, :product_id)
   end
-
 end

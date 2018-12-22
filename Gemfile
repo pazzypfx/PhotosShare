@@ -30,7 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'warden'
 
 # Uploading and processing photos
-gem 'carrierwave', "~> 1.0"
+gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

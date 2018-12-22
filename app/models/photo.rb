@@ -6,29 +6,29 @@ class Photo < ApplicationRecord
 
   mount_uploader :path, PhotoUploader
 
-  validates_presence_of :path
+  validates :path, presence: true
 
   self.per_page = 8
 
   def product
-    self.variety.product unless variety.blank?
+    self.variety.product if variety.present?
   end
 
   def product=(val); end
 
   def self.find_all(product, variety, place)
     photos = Photo.all
-    photos = product.photos unless product.blank?
-    photos = photos.where(variety: variety) unless variety.blank?
-    photos = photos.where(place: place) unless place.blank?
-    return photos
+    photos = product.photos if product.present?
+    photos = photos.where(variety: variety) if variety.present?
+    photos = photos.where(place: place) if place.present?
+    photos
   end
 
   def self.filter_by_ages(lower, upper)
     photos = self
-    photos = photos.where('age <= ?', upper) unless upper.blank?
-    photos = photos.where('age >= ?', lower) unless lower.blank?
-    return photos
+    photos = photos.where('age <= ?', upper) if upper.present?
+    photos = photos.where('age >= ?', lower) if lower.present?
+    photos
   end
 
   enum ages:

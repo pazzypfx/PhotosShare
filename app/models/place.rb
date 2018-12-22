@@ -1,5 +1,5 @@
 class Place < ApplicationRecord
   has_many :photos
 
-  validates_presence_of :name
+  validates :name, presence: true
 end

@@ -1,15 +1,19 @@
+# Controller used to show/sort/filter/create Photos by agents
 class GalleryController < ApplicationController
   skip_load_and_authorize_resource
   layout 'gallery'
-  before_action :set_variables, only: [:index]
+  before_action :init_variables, only: :index
   skip_before_action :authorize_admin_manager
 
   def index
-    render(file: 'public/404.html', status: :not_found, layout: false) unless get_params
+    unless check_params
+      render(file: 'public/404.html', status: :not_found, layout: false)
+    end
     @photos = Photo.find_all(@product, @variety, @place)
                    .filter_by_ages(@age1, @age2)
                    .page(params[:page])
-    @varieties = @product.varieties.pluck('name, variety_code') if defined?(@product) && !@product.blank?
+    return unless defined?(@product) && @product.present?
+    @varieties = @product.varieties.pluck('name, variety_code')
   end
 
   def show
@@ -19,7 +23,7 @@ class GalleryController < ApplicationController
   private
 
   # Set the variables if defined in url or to empty if not
-  def set_variables
+  def init_variables
     # Set selected product, variety, and place to nil
     @product = nil
     @product_code = ''
@@ -38,25 +42,25 @@ class GalleryController < ApplicationController
     @ages = Photo.ages
   end
 
-  def get_params
+  def check_params
     exists = true
-    exists &= set_param(params[:product]) if params[:product].present?
-    exists &= set_param(params[:variety]) if params[:variety].present?
-    exists &= set_param(params[:place]) if params[:place].present?
-    set_dates(params[:age]) if params[:age].present?
+    exists &= init_param(params[:product]) if params[:product].present?
+    exists &= init_param(params[:variety]) if params[:variety].present?
+    exists &= init_param(params[:place]) if params[:place].present?
+    init_dates(params[:age]) if params[:age].present?
     exists
   end
 
-  def set_param(name)
+  def init_param(name)
     case check_param(name)
     when 1
-      @product = Product.find_by_product_code(name)
+      @product = Product.find_by(product_code: name)
       @product_code = @product.product_code
     when 2
-      @variety = Variety.find_by_variety_code(name)
+      @variety = Variety.find_by(variety_code: name)
       @variety_code = @variety.variety_code
     when 3
-      @place = Place.find_by_place_code(name)
+      @place = Place.find_by(place_code: name)
       @place_code = @place.place_code
     else
       return false
@@ -71,8 +75,8 @@ class GalleryController < ApplicationController
     0
   end
 
-  def set_dates(param)
-    ages = param.split(",").map(&:to_i).sort
+  def init_dates(param)
+    ages = param.split(',').map(&:to_i).sort
     return if ages.sum.zero?
     @age1, @age2 = ages
   end

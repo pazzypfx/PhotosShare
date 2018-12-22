@@ -1,7 +1,8 @@
+# Controller for managing logins and log-outs
 class SessionsController < ApplicationController
   skip_load_and_authorize_resource
   layout false
-  skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :require_login, only: %i[new create]
   skip_before_action :authorize_admin_manager
 
   def new
@@ -18,5 +19,4 @@ class SessionsController < ApplicationController
     warden.logout
     redirect_to login_url, notice: 'logged out!'
   end
-
 end

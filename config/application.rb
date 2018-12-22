@@ -25,7 +25,7 @@ module GalleryShare
     # or a third party host such as Loggly, etc..
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
-    config.log_tags  = [:subdomain, :uuid]
+    config.log_tags  = %i[subdomain uuid]
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 end
