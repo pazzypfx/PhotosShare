@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :username, presence: true, uniqueness: true
+  validates :role, presence: true
 
   # Returns the hash digest of the given string.
   def self.digest(string)

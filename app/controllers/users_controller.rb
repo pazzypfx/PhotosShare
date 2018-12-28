@@ -1,7 +1,7 @@
 # Controller for user management
 class UsersController < ApplicationController
   before_action :init_user, only: %i[show edit update destroy]
-  before_action :set_roles, only: %i[new edit]
+  before_action :set_roles, only: %i[new create edit]
 
   # GET /users
   # GET /users.json
@@ -68,7 +68,8 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :firstName, :lastName, :email,
-                                 :password, :password_confirmation, :active)
+                                 :password, :password_confirmation, :active, 
+                                 :role)
   end
 
   def set_roles
