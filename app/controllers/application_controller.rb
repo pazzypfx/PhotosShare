@@ -59,5 +59,6 @@ class ApplicationController < ActionController::Base
     @products = Product.all.pluck('name, id')
     @varieties = Variety.all.pluck('name, id')
     @places = Place.all.pluck('name, id')
+    @ages = Photo.ages
   end
 end

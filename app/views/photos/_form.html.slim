@@ -31,6 +31,12 @@
     div class="col-md-6 col-sm-6 col-xs-12"
       = f.select :place_id, @places, {:selected => @place_code, :prompt => '- Select -'}, class: 'form-control'
 
+
+  .form-group
+    = f.label :age, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'age'
+    div class="col-md-6 col-sm-6 col-xs-12"
+      = f.select :age, @ages, {:selected => @age, :prompt => '- Select -'}, class: 'form-control'
+
   .form-group
     = f.label :date, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'date'
     div class="col-md-6 col-sm-6 col-xs-12"
