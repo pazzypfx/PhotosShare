@@ -3,6 +3,9 @@ header id="header"
   - if current_user.admin? or current_user.manager?
     .align-center
       = button_to 'Go to admin dashboard', photos_path, method: :get
+  - else
+    .align-center
+      = button_to 'Add photo', gallery_new_url, method: :get
   .selector
     | Product:
     select[name="product" id="product" class="selectors" onclick="gallery.events.selector_changed(1)"]

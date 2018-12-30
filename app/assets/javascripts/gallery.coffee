@@ -4,6 +4,7 @@
 #= require jquery
 #= require ./gallery/skel.min
 #= require ./gallery/main/
+#= require photos
 #= require_self
 
 @gallery = {}

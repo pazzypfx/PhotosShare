@@ -1,8 +1,9 @@
 # Controller used to show/sort/filter/create Photos by agents
 class GalleryController < ApplicationController
   skip_load_and_authorize_resource
-  layout 'gallery'
-  before_action :init_variables, only: :index
+  layout 'gallery', only: %i[index show]
+  layout 'agent', only: %i[new create]
+  before_action :init_variables, only: %i[index new create]
   skip_before_action :authorize_admin_manager
 
   def index
@@ -18,6 +19,25 @@ class GalleryController < ApplicationController
 
   def show
     @photo = Photo.find(params[:id])
+  end
+
+  def new
+    @photo = Photo.new
+  end
+  
+  def create
+    @photo = Photo.new(photo_params)
+    # TODO: get current user to affect to the added photo
+    @photo.user = User.find(1)
+    respond_to do |format|
+      if @photo.save
+        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
+        format.json { render :show, status: :created, location: @photo }
+      else
+        format.html { render :new }
+        format.json { render json: @photo.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
@@ -79,5 +99,10 @@ class GalleryController < ApplicationController
     ages = param.split(',').map(&:to_i).sort
     return if ages.sum.zero?
     @age1, @age2 = ages
+  end
+
+  def photo_params
+    params.require(:photo).permit(:path, :variety_id, :place_id, :date,
+                                  :published, :product, :age)
   end
 end

@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   root 'gallery#index'
   get 'gallery/show/:id', to: 'gallery#show'
+  get 'gallery/new', to: 'gallery#new', as: 'gallery_new'
+  post 'gallery', to: 'gallery#create'
 end

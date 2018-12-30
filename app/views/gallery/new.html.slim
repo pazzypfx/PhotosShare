@@ -1,0 +1,50 @@
+= form_for(@photo, url:'/gallery', :html => { :id => 'demo-form2', class: 'form-horizontal form-label-left', :data_parsley_validate => '' }) do |f|
+  - if @photo.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@photo.errors.count, 'error')
+        |  prohibited this photo from being saved:
+
+      ul
+        - @photo.errors.full_messages.each do |message|
+          li= message
+
+  .form-group
+    = f.label :file, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'file'
+    div class="col-md-6 col-sm-6 col-xs-12"
+      = f.file_field :path, class: 'btn btn-default btn-sm'
+
+  .form-group
+    = f.label :product, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'product'
+    div class="col-md-6 col-sm-6 col-xs-12"
+      select[name="product" id="product" class="form-control selectors" onclick="photos.events.product_changed()"]
+        option[value=""] - All -
+        = options_for_select(@products, selected: @product_id)
+
+  .form-group
+    = f.label :variety_id, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'variety'
+    div class="col-md-6 col-sm-6 col-xs-12"
+      = f.select :variety_id, @varieties, {:selected => @variety_id, :prompt => '- Select -'}, id: 'varieties', class: 'form-control'
+
+  .form-group
+    = f.label :place_id, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'place'
+    div class="col-md-6 col-sm-6 col-xs-12"
+      = f.select :place_id, @places, {:selected => @place_code, :prompt => '- Select -'}, class: 'form-control'
+
+  .form-group
+    = f.label :age, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'age'
+    div class="col-md-6 col-sm-6 col-xs-12"
+      = f.select :age, @ages, {:selected => @age, :prompt => '- Select -'}, class: 'form-control'
+
+  .form-group
+    = f.label :date, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'date'
+    div class="col-md-6 col-sm-6 col-xs-12"
+      = f.datetime_select :date, :discard_hour => true
+
+  .ln_solid
+
+  .form-group
+    div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3"
+      = yield(:cancel_button) if content_for? :cancel_button
+      button class="btn btn-primary" type="reset" Reset
+      = f.submit class: 'btn btn-success'
