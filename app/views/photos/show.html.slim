@@ -27,6 +27,11 @@ div class="col-md-4 col-sm-12 col-xs-12"
         input type="text" class="form-control" disabled="disabled" value="#{@photo.place.name}"
 
     .form-group
+      label class="control-label col-md-3 col-sm-5 col-xs-6" age
+      div class="col-md-9 col-sm-7 col-xs-6"
+        input type="text" class="form-control" disabled="disabled" value="#{Photo.ages.key(@photo.age)}"
+
+    .form-group
       label class="control-label col-md-3 col-sm-5 col-xs-6" User
       div class="col-md-9 col-sm-7 col-xs-6"
         input type="text" class="form-control" disabled="disabled" value="#{@photo.user.username}"

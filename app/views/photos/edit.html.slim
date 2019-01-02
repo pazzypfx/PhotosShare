@@ -4,7 +4,10 @@
 = link_to 'Show', @photo, class: 'btn btn-info btn-lg'
 = link_to 'Back', photos_path, class: 'btn btn-info btn-lg'
 
-.ln_solid
+div class="col-md-8 col-sm-12 col-xs-12"
+  =< image_tag @photo.path.normal.url, style: 'height: 100%; width: 100%; object-fit: contain'
 
-= render 'form', photo: @photo
+.ln_solid
+div class="col-md-4 col-sm-12 col-xs-12"
+  = render 'form', photo: @photo
 

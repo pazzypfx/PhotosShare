@@ -9,10 +9,11 @@
         - photo.errors.full_messages.each do |message|
           li= message
 
-  .form-group
-    = f.label :file, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'file'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.file_field :path, class: 'btn btn-default btn-sm'
+  - unless photo.persisted?
+    .form-group
+      = f.label :file, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'file'
+      div class="col-md-6 col-sm-6 col-xs-12"
+        = f.file_field :path, class: 'btn btn-default btn-sm'
 
   .form-group
     = f.label :product, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'product'
@@ -24,18 +25,18 @@
   .form-group
     = f.label :variety_id, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'variety'
     div class="col-md-6 col-sm-6 col-xs-12"
-      = f.select :variety_id, @varieties, {:selected => @variety_id, :prompt => '- Select -'}, id: 'varieties', class: 'form-control'
+      = f.select :variety_id, @varieties, {:selected => photo.variety_id, :prompt => '- Select -'}, id: 'varieties', class: 'form-control'
 
   .form-group
     = f.label :place_id, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'place'
     div class="col-md-6 col-sm-6 col-xs-12"
-      = f.select :place_id, @places, {:selected => @place_code, :prompt => '- Select -'}, class: 'form-control'
+      = f.select :place_id, @places, {:selected => photo.place_id, :prompt => '- Select -'}, class: 'form-control'
 
 
   .form-group
     = f.label :age, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'age'
     div class="col-md-6 col-sm-6 col-xs-12"
-      = f.select :age, @ages, {:selected => @age, :prompt => '- Select -'}, class: 'form-control'
+      = f.select :age, @ages, {:selected => photo.age, :prompt => '- Select -'}, class: 'form-control'
 
   .form-group
     = f.label :date, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'date'

@@ -30,8 +30,8 @@ class GalleryController < ApplicationController
     @photo = Photo.new(photo_params)
     @photo.variety = @variety
     @photo.place = @place
-    # TODO: get current user to affect to the added photo
-    @photo.user = User.find(1)
+    @photo.user = current_user
+
     respond_to do |format|
       if @photo.save
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
@@ -106,7 +106,7 @@ class GalleryController < ApplicationController
 
   def photo_params
     params.require(:photo).permit(:path, :variety_id, :place_id, :date,
-                                  :published, :product, :age)
+                                  :published, :age)
   end
 
   def translate_codes

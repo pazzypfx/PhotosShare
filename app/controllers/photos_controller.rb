@@ -24,8 +24,7 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @photo = Photo.new(photo_params)
-    # TODO: get current user to affect to the added photo
-    @photo.user = User.find(1)
+    @photo.user = current_user
 
     respond_to do |format|
       if @photo.save
@@ -72,6 +71,6 @@ class PhotosController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def photo_params
     params.require(:photo).permit(:path, :variety_id, :place_id, :date,
-                                  :published, :product, :age)
+                                  :published, :age)
   end
 end
