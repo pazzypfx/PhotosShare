@@ -4,6 +4,7 @@ class GalleryController < ApplicationController
   layout 'gallery', only: %i[index show]
   layout 'agent', only: %i[new create]
   before_action :init_variables, only: %i[index new create]
+  before_action :translate_codes, only: :create
   skip_before_action :authorize_admin_manager
 
   def index
@@ -27,6 +28,8 @@ class GalleryController < ApplicationController
   
   def create
     @photo = Photo.new(photo_params)
+    @photo.variety = @variety
+    @photo.place = @place
     # TODO: get current user to affect to the added photo
     @photo.user = User.find(1)
     respond_to do |format|
@@ -104,5 +107,14 @@ class GalleryController < ApplicationController
   def photo_params
     params.require(:photo).permit(:path, :variety_id, :place_id, :date,
                                   :published, :product, :age)
+  end
+
+  def translate_codes
+    @place = Place.find_by(place_code: params[:photo][:place_code])
+    @place_code = @place.place_code
+    @variety = Variety.find_by(variety_code: params[:photo][:variety_code])
+    @variety_code = @variety.variety_code
+    @varieties = @variety.product.varieties.pluck('name, variety_code')
+    @product_id = @variety.product.product_code
   end
 end
