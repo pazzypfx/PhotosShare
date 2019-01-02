@@ -1,6 +1,8 @@
 # Controller for Products management
 class ProductsController < ApplicationController
   before_action :init_product, only: %i[show edit update destroy]
+  skip_load_and_authorize_resource only: :varieties
+  skip_before_action :authorize_admin_manager, only: :varieties
 
   # GET /products
   # GET /products.json
@@ -55,6 +57,19 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def varieties
+    @varieties = Product
+                  .find_by(product_code: params[:code])
+                  .varieties
+                  .pluck('name, variety_code')
+
+    if @varieties.present?
+      render json: @varieties.to_json, status: :ok
+    else
+      render status: :no_content
     end
   end
 
