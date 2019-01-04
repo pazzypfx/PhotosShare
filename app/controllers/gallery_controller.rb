@@ -25,7 +25,7 @@ class GalleryController < ApplicationController
   def new
     @photo = Photo.new
   end
-  
+
   def create
     @photo = Photo.new(photo_params)
     @photo.variety = @variety

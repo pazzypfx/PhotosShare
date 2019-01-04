@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 2018_12_08_121201) do
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "username"
-    t.string "firstName"
-    t.string "lastName"
+    t.string "first_name"
+    t.string "last_name"
     t.string "email"
     t.string "password_digest"
     t.boolean "active"

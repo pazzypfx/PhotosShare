@@ -8,10 +8,10 @@
 
 users = User.create(
   [
-    { username: 'admin',   firstName: 'Admin',   lastName: 'Admin',   email: 'email',  password_digest: User.digest('admin'),   active: true,  role: :admin },
-    { username: 'manager', firstName: 'Manager', lastName: 'Manager', email: 'email0', password_digest: User.digest('manager'), active: true,  role: :manager },
-    { username: 'agent1',  firstName: 'Agent1',  lastName: 'Agent1',  email: 'email1', password_digest: User.digest('agent'),   active: true,  role: :agent },
-    { username: 'agent2',  firstName: 'Agent2',  lastName: 'Agent2',  email: 'email2', password_digest: User.digest('agent'),   active: false, role: :agent }
+    { username: 'admin',   first_name: 'Admin',   last_name: 'Admin',   email: 'email',  password_digest: User.digest('admin'),   active: true,  role: :admin },
+    { username: 'manager', first_name: 'Manager', last_name: 'Manager', email: 'email0', password_digest: User.digest('manager'), active: true,  role: :manager },
+    { username: 'agent1',  first_name: 'Agent1',  last_name: 'Agent1',  email: 'email1', password_digest: User.digest('agent'),   active: true,  role: :agent },
+    { username: 'agent2',  first_name: 'Agent2',  last_name: 'Agent2',  email: 'email2', password_digest: User.digest('agent'),   active: false, role: :agent }
   ]
 )
 

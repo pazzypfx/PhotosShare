@@ -17,15 +17,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create user' do
     assert_difference('User.count') do
-      user = User.new(active: true, email: 'email4', firstName: 'firstName4',
-                      lastName: 'lastName4', password_digest: 'password4',
+      user = User.new(active: true, email: 'email4', first_name: 'firstName4',
+                      last_name: 'lastName4', password_digest: 'password4',
                       username: 'username4')
       post users_url, params: {
         user: {
           active: user.active,
           email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
+          first_name: user.first_name,
+          last_name: user.last_name,
           username: user.username,
           password: user.password_digest,
           password_confirmation: user.password_digest
@@ -51,8 +51,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       user: {
         active: @user.active,
         email: @user.email,
-        firstName: @user.firstName,
-        lastName: @user.lastName,
+        first_name: @user.first_name,
+        last_name: @user.last_name,
         password_digest: @user.password_digest,
         username: @user.username
       }
