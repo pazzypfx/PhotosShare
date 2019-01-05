@@ -1,7 +1,7 @@
 class Photo < ApplicationRecord
   belongs_to :user
   belongs_to :variety
-  delegate :product, to: :variety # eq to: has_one :product, through: :variety
+  has_one :product, through: :variety
   belongs_to :place
 
   mount_uploader :path, PhotoUploader
