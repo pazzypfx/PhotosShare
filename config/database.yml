@@ -26,5 +26,5 @@ test:
 
 production:
   <<: *default
-  host: <%= ENV["POSTGRES_HOST"] %>
+  host: <%= ENV["POSTGRES_HOST"] || 'localhost' %>
   database: gallery
