@@ -27,12 +27,12 @@ html lang='en'
               = submit_tag 'Log in', class: 'btn btn-default submit'
               a class="reset_pass" href="#" Lost your password?
 
-              - if !flash.empty?
-                - if flash[:alert].present?
-                  div class="alert alert-error alert-dismissible fade in"
-                    = flash[:alert]
-
             .clearfix
+  
+            - if !flash.empty?
+              - if flash[:alert].present?
+                div class="alert alert-error alert-dismissible fade in"
+                  = flash[:alert]
 
             .separator
               .clearfix
