@@ -32,9 +32,8 @@ config/initializers/secret_token.rb
 # add IDE files
 .idea/*
 
-# Ignore uploaded files and seed images
+# Ignore uploaded files
 public/uploads/*
-db/seeds/images/*
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
