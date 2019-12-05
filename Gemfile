@@ -52,10 +52,18 @@ gem 'cancancan', '~> 2.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  gem 'pry-byebug'
+  gem 'pry-rails'
+
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'rspec-rails', '~> 3.8'
+  # gem 'shoulda-matchers'
+
+  gem 'awesome_print', require: false
+  gem 'faker'
+
   gem 'debase'
   gem 'ruby-debug-ide'
 end
@@ -75,6 +83,6 @@ group :development do
 end
 
 group :test do
-  gem 'rails-controller-testing' # If you are using Rails 5.x
-  gem 'shoulda-matchers', '4.0.0.rc1'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
