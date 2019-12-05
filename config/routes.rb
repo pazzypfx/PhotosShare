@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  resources :sessions
+  resources :sessions, only: %i[create destroy]
 
   scope :admin do
     resources :users, :photos, :products, :varieties, :places
