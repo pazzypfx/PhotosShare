@@ -1,9 +1,16 @@
-version: '3.6'
+version: '3.7'
 
 services:
+  db:
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
   app:
     image: psa/photos_share:0.1
     volumes:
       - ./file_storage:/app/public/uploads
     environment:
       - SECRET_KEY_BASE
+      - POSTGRES_HOST
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
