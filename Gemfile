@@ -47,7 +47,7 @@ gem 'slim'
 gem 'gentelella-rails'
 
 # Managing authorizations
-gem 'cancancan', '~> 2.0'
+gem 'cancancan'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -58,7 +58,7 @@ group :development, :test do
 
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-rails', '~> 4.0.1'
   # gem 'shoulda-matchers'
 
   gem 'awesome_print', require: false
