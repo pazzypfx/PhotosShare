@@ -4,10 +4,10 @@ RSpec.describe 'Sessions', type: :request do
   describe 'POST /sessions' do
     let(:make_request) { post sessions_path, params: payload }
 
-    let!(:user) { create(:user, password: 'password') }
+    let!(:user) { create(:user, %i[admin manager].sample, password: 'password') }
     let!(:payload) { { username: user.username, password: 'password' } }
 
-    it 'should login' do
+    it 'should be redirected to photos path' do
       make_request
       expect(response).to redirect_to(photos_path)
     end
@@ -16,7 +16,7 @@ RSpec.describe 'Sessions', type: :request do
       let!(:user) { create(:user, :agent, password: 'password') }
       let!(:payload) { { username: user.username, password: 'password' } }
 
-      it 'should login' do
+      it 'should be redirected to root path' do
         make_request
         expect(response).to redirect_to(root_path)
       end
@@ -32,7 +32,7 @@ RSpec.describe 'Sessions', type: :request do
   end
 
   describe 'DELETE /sessions' do
-    before { login_as(FactoryBot.create(:user, :admin)) }
+    before { login_as(FactoryBot.create(:user, %i[admin manager agent].sample)) }
     after { Warden.test_reset! }
 
     let(:make_request) { get '/logout' }

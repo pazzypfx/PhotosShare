@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Photos', type: :request do
-  before { login_as(FactoryBot.create(:user, :admin)) }
+  before { login_as(FactoryBot.create(:user, %i[admin manager].sample)) }
   after { Warden.test_reset! }
 
   describe 'GET /photos' do

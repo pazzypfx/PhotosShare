@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Varieties', type: :request do
-  before { login_as(FactoryBot.create(:user, :admin)) }
+  before { login_as(FactoryBot.create(:user, %i[admin manager].sample)) }
   after { Warden.test_reset! }
 
   describe 'GET /varieties' do
