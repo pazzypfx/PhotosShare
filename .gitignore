@@ -7,10 +7,6 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-#/db/*.sqlite3
-#/db/*.sqlite3-journal
-
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -25,10 +21,6 @@ capybara-*.html
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
 
-# dotenv
-# TODO Comment out this rule if environment variables can be committed
-.env
-
 # add IDE files
 .idea/*
 
@@ -37,3 +29,6 @@ public/uploads/*
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# coverage folder
+coverage

@@ -52,6 +52,18 @@ gem 'cancancan', '~> 2.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  gem 'pry-byebug'
+  gem 'pry-rails'
+
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.8'
+  # gem 'shoulda-matchers'
+
+  gem 'awesome_print', require: false
+  gem 'faker'
+
   gem 'debase'
   gem 'ruby-debug-ide'
 end
@@ -68,4 +80,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
