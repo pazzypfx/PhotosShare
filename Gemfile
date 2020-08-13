@@ -58,6 +58,9 @@ group :development, :test do
 
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+
+  gem 'fuubar'
+  gem 'rspec_junit_formatter'
   gem 'rspec-rails', '~> 4.0.1'
   # gem 'shoulda-matchers'
 
@@ -66,6 +69,10 @@ group :development, :test do
 
   gem 'debase'
   gem 'ruby-debug-ide'
+
+  gem 'rubocop', '~> 0.89.1', require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
 end
 
 group :development do
@@ -83,6 +90,7 @@ group :development do
 end
 
 group :test do
+  gem 'codecov', require: false
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
