@@ -16,8 +16,7 @@
 //= require photos
 //= require users
 //= require cable
-//= require gentelella
-//= require gentelella-custom
+//= require material-dashboard
 //= require jquery.lazyload
 
 $("img.lazy").lazyload();

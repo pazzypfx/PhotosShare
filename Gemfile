@@ -43,9 +43,6 @@ gem 'will_paginate', '~> 3.1.0'
 
 gem 'slim'
 
-# Style
-gem 'gentelella-rails'
-
 # Managing authorizations
 gem 'cancancan'
 
