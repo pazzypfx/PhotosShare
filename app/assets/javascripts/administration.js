@@ -16,6 +16,7 @@
 //= require photos
 //= require users
 //= require cable
+//= require material-plugins
 //= require material-dashboard
 //= require jquery.lazyload
 

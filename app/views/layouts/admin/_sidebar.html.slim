@@ -1,0 +1,28 @@
+| <!-- side navigation -->
+.sidebar data-color="purple" data-background-color="white"
+  .logo
+    a href="#" class="simple-text logo-normal" Topsem
+
+  .sidebar-wrapper
+    ul class="nav"
+      li class="nav-item"
+        = link_to raw('<i class="material-icons">dashboard</i> Dashboard '), '#', class: 'nav-link'
+
+      li class="nav-item"
+        = link_to raw('<i class="material-icons">insert_photo</i> Photos '), photos_path, class: 'nav-link'
+
+      li class="nav-item"
+        = link_to raw('<i class="material-icons">people</i> Users '), users_path, class: 'nav-link'
+
+      li class="nav-item"
+        = link_to raw('<i class="material-icons">yard</i> Products '), products_path, class: 'nav-link'
+
+      li class="nav-item"
+        = link_to raw('<i class="material-icons">eco</i> Varieties '), varieties_path, class: 'nav-link'
+
+      li class="nav-item"
+        = link_to raw('<i class="material-icons">place</i> Places '), places_path, class: 'nav-link'
+
+      li class="nav-item active-pro"
+        = link_to raw('<i class="material-icons">perm_media</i> Gallery '), root_url, class: 'nav-link'
+| <!-- /side navigation -->
