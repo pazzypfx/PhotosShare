@@ -18,6 +18,7 @@
 //= require cable
 //= require material-plugins
 //= require material-dashboard
+//= require material-custom
 //= require jquery.lazyload
 
 $("img.lazy").lazyload();

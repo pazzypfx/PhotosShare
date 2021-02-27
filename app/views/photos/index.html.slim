@@ -1,39 +1,48 @@
 - content_for :page_title do
   | List of Photos
 
-= link_to 'New Photo', new_photo_path, class: 'btn btn-info btn-lg pull-right'
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">add</i>'), new_photo_path, class: 'btn btn-outline-info pull-right'
 
-table id="datatable" class="table table-striped table-bordered"
-  thead
-    tr
-      th ID
-      th Path
-      th Product
-      th Variety
-      th Place
-      th User
-      th Date
-      th Published
-      th
-      th
-      th
-  tbody
-    - @photos.each do |photo|
-      tr
-        td = photo.id
-        td
-          img class="lazy" with="40" height="40" data-original== "#{photo.path.thumb.url}"
-        td = photo.product.product_code
-        td = photo.variety.variety_code
-        td = photo.place.name
-        td = photo.user.username
-        td = photo.date
-        td
-          - if photo && photo.published?
-            input type='checkbox' class='js-switch' checked='checked' value="#{photo.id}"
-          - else
-            input type='checkbox' class='js-switch' value="#{photo.id}"
-          i class="fa fa-spinner fa-spin" id="spinner_#{photo.id}"
-        td = link_to 'Show', photo, class: 'btn btn-success'
-        td = link_to 'Edit', edit_photo_path(photo), class: 'btn btn-warning'
-        td = link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" Photos
+
+    div class="card-body table-responsive"
+      table id="datatable" class="table table-hover datatable-lazyload"
+        thead class="text-warning"
+          tr
+            th ID
+            th Path
+            th Product
+            th Variety
+            th Place
+            th User
+            th Date
+            th Published
+            th Actions
+
+        tbody
+          - @photos.each do |photo|
+            tr
+              td = photo.id
+              td
+                img class="lazy" with="40" height="40" data-original== "#{photo.path.thumb.url}"
+              td = photo.product.product_code
+              td = photo.variety.variety_code
+              td = photo.place.name
+              td = photo.user.username
+              td = photo.date
+              td
+                - if photo && photo.published?
+                  input type='checkbox' class='js-switch' checked='checked' value="#{photo.id}"
+                - else
+                  input type='checkbox' class='js-switch' value="#{photo.id}"
+                i class="fa fa-spinner fa-spin" id="spinner_#{photo.id}"
+              td
+                = link_to raw('<i class="material-icons">open_in_full</i>'), photo, class: 'btn btn-sm btn-outline-info'
+                = link_to raw('<i class="material-icons">create</i>'), edit_photo_path(photo), class: 'btn btn-sm btn-outline-warning'
+                = link_to raw('<i class="material-icons">delete</i>'), photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger'
