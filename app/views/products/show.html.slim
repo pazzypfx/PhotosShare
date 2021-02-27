@@ -1,19 +1,23 @@
 - content_for :page_title do
   | Show a Product
 
-= link_to 'Edit', edit_product_path(@product), class: 'btn btn-warning btn-lg'
-= link_to 'Back', products_path, class: 'btn btn-info btn-lg'
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), products_path, class: 'btn btn-default'
+      = link_to raw('<i class="material-icons">create</i>'), edit_product_path(@product), class: 'btn btn-warning'
 
-.ln_solid
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" Product Information
 
-form class="form-horizontal"
+    div class="card-body"
+      form class="mt-4"
+        .form-group
+          label Product code
+          input type="text" class="form-control" disabled="disabled" value="#{@product.product_code}"
 
-  .form-group
-    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Product code
-    div class="col-md-6 col-sm-6 col-xs-12"
-      input type="text" class="form-control" disabled="disabled" value="#{@product.product_code}"
-
-  .form-group
-    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Name
-    div class="col-md-6 col-sm-6 col-xs-12"
-      input type="text" class="form-control" disabled="disabled" value="#{@product.name}"
+        .form-group
+          label Name
+          input type="text" class="form-control" disabled="disabled" value="#{@product.name}"

@@ -1,4 +1,4 @@
-= form_for(user, :html => { :id => 'demo-form2', class: 'form-horizontal form-label-left', :data_parsley_validate => '' }) do |f|
+= form_for(user, :html => { id: 'user_form', class: 'mt-4', data_parsley_validate: '' }) do |f|
   - if user.errors.any?
     #error_explanation
       h2
@@ -8,54 +8,48 @@
       ul
         - user.errors.full_messages.each do |message|
           li = message
-  .form-group
-    = f.label :username, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'username'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.text_field :username, class: 'form-control col-md-7 col-xs-12'
 
   .form-group
-    = f.label :first_name, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'first_name'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.text_field :first_name, class: 'form-control col-md-7 col-xs-12'
+    = f.label :username
+    = f.text_field :username, class: 'form-control'
 
   .form-group
-    = f.label :last_name, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'last_name'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.text_field :last_name, class: 'form-control col-md-7 col-xs-12'
+    = f.label :first_name
+    = f.text_field :first_name, class: 'form-control'
 
   .form-group
-    = f.label :email, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'email'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.email_field :email, class: 'form-control col-md-7 col-xs-12'
+    = f.label :last_name
+    = f.text_field :last_name, class: 'form-control'
 
   .form-group
-    = f.label :password, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'password'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.password_field :password, class: 'form-control col-md-7 col-xs-12'
+    = f.label :email
+    = f.email_field :email, class: 'form-control'
 
   .form-group
-    = f.label :password_confirmation, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'password_confirmation'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.password_field :password_confirmation, class: 'form-control col-md-7 col-xs-12'
+    = f.label :password
+    = f.password_field :password, class: 'form-control'
+
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, class: 'form-control'
 
   - if current_user&.admin?
     .form-group
-      = f.label :role, class: 'control-label col-md-3 col-sm-3 col-xs-12', for: 'role'
-      div class="col-md-6 col-sm-6 col-xs-12"
-        = f.select :role, @roles, {:selected => user.role, :prompt => '- Select -'}, id: 'roles', class: 'form-control'
+      = f.label :role
+      = f.select :role, @roles, { :selected => user.role, :prompt => '- Select -' }, class: 'form-control'
+
+  input name="active" type="hidden" value="off"
+  .form-group
+    .togglebutton
+      label
+        - if user && user.active?
+          = f.check_box :active, type: 'check_box', checked: 'checked'
+        - else
+          = f.check_box :active, type: 'check_box'
+        span class="toggle"
+        | Active
 
   .form-group
-    = f.label :active, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'active'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      - if user && user.active?
-        = f.check_box :active, type: 'check_box', class: 'js-switch', checked: 'checked'
-      - else
-        = f.check_box :active, type: 'check_box', class: 'js-switch'
-
-  .ln_solid
-
-  .form-group
-    div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3"
-      = yield(:cancel_button) if content_for? :cancel_button
-      button class="btn btn-primary" type="reset" Reset
-      = f.submit class: 'btn btn-success'
+    = yield(:cancel_button) if content_for? :cancel_button
+    button class="btn btn-primary" type="reset" Reset
+    = f.submit class: 'btn btn-success'

@@ -1,50 +1,54 @@
 - content_for :page_title do
   | Show Photo
 
-= link_to 'Edit', edit_photo_path(@photo), class: 'btn btn-warning btn-lg'
-= link_to 'Back', photos_path, class: 'btn btn-info btn-lg'
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), photos_path, class: 'btn btn-default'
+      = link_to raw('<i class="material-icons">create</i>'), edit_photo_path(@photo), class: 'btn btn-warning'
 
-div class="col-md-8 col-sm-12 col-xs-12"
-  =< image_tag @photo.path.normal.url, style: 'height: 100%; width: 100%; object-fit: contain'
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" Photo Information
 
+    div class="card-body"
+      .row
+        div class="col-md-8 col-sm-12 col-xs-12"
+          =< image_tag @photo.path.normal.url, style: 'height: 100%; width: 100%; object-fit: contain'
 
-div class="col-md-4 col-sm-12 col-xs-12"
-  .ln_solid
-  form class="form-horizontal"
-    .form-group
-      label class="control-label col-md-3 col-sm-5 col-xs-6" Product
-      div class="col-md-9 col-sm-7 col-xs-6"
-        input type="text" class="form-control" disabled="disabled" value="#{@photo.product.product_code}"
+        div class="col-md-4 col-sm-12 col-xs-12"
+          form class="mt-4"
+            .form-group
+              label Product
+              input type="text" class="form-control" disabled="disabled" value="#{@photo.product.product_code}"
 
-    .form-group
-      label class="control-label col-md-3 col-sm-5 col-xs-6" Variety
-      div class="col-md-9 col-sm-7 col-xs-6"
-        input type="text" class="form-control" disabled="disabled" value="#{@photo.variety.variety_code}"
+            .form-group
+              label Variety
+              input type="text" class="form-control" disabled="disabled" value="#{@photo.variety.variety_code}"
 
-    .form-group
-      label class="control-label col-md-3 col-sm-5 col-xs-6" Place
-      div class="col-md-9 col-sm-7 col-xs-6"
-        input type="text" class="form-control" disabled="disabled" value="#{@photo.place.name}"
+            .form-group
+              label Place
+              input type="text" class="form-control" disabled="disabled" value="#{@photo.place.name}"
 
-    .form-group
-      label class="control-label col-md-3 col-sm-5 col-xs-6" age
-      div class="col-md-9 col-sm-7 col-xs-6"
-        input type="text" class="form-control" disabled="disabled" value="#{Photo.ages.key(@photo.age)}"
+            .form-group
+              label Age
+              input type="text" class="form-control" disabled="disabled" value="#{Photo.ages.key(@photo.age)}"
 
-    .form-group
-      label class="control-label col-md-3 col-sm-5 col-xs-6" User
-      div class="col-md-9 col-sm-7 col-xs-6"
-        input type="text" class="form-control" disabled="disabled" value="#{@photo.user.username}"
+            .form-group
+              label User
+              input type="text" class="form-control" disabled="disabled" value="#{@photo.user.username}"
 
-    .form-group
-      label class="control-label col-md-3 col-sm-5 col-xs-6" Date
-      div class="col-md-9 col-sm-7 col-xs-6"
-        input type="text" class="form-control" disabled="disabled" value="#{@photo.date}"
+            .form-group
+              label Date
+              input type="text" class="form-control" disabled="disabled" value="#{@photo.date}"
 
-    .form-group
-      label class="control-label col-md-3 col-sm-5 col-xs-6" Published
-      div class="col-md-9 col-sm-7 col-xs-6"
-        - if @photo.published?
-          input type="checkbox" class="js-switch" disabled="disabled" checked="checked"
-        -else
-          input type="checkbox" class="js-switch" disabled="disabled"
+            .form-group
+              .togglebutton
+                label
+                  - if @photo.published?
+                    input type="checkbox" disabled="disabled" checked="checked"
+                  - else
+                    input type="checkbox" disabled="disabled"
+                  span class="toggle"
+                  | Published

@@ -1,9 +1,16 @@
 - content_for :page_title do
   | Editing Product Information
 
-= link_to 'Show', @product, class: 'btn btn-info btn-lg'
-= link_to 'Back', products_path, class: 'btn btn-info btn-lg'
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), products_path, class: 'btn btn-default'
+      = link_to raw('<i class="material-icons">open_in_full</i>'), @product, class: 'btn btn-info'
 
-.ln_solid
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" Edit Product Information
 
-= render 'form', prod: @product
+    div class="card-body"
+      = render 'form', prod: @product

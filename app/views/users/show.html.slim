@@ -1,37 +1,41 @@
 - content_for :page_title do
-  | Show a Use
+  | Show a User
 
-= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning btn-lg'
-= link_to 'Back', users_path, class: 'btn btn-info btn-lg'
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), users_path, class: 'btn btn-default'
+      = link_to raw('<i class="material-icons">create</i>'), edit_user_path(@user), class: 'btn btn-warning'
 
-.ln_solid
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" User Information
 
-form class="form-horizontal"
+    div class="card-body"
+      form class="mt-4"
+        .form-group
+          label Username
+          input type="text" class="form-control" disabled="disabled" value="#{@user.username}"
 
-  .form-group
-    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Username
-    div class="col-md-6 col-sm-6 col-xs-12"
-      input type="text" class="form-control" disabled="disabled" value="#{@user.username}"
+        .form-group
+          label First name
+          input type="text" class="form-control" disabled="disabled" value="#{@user.first_name}"
 
-  .form-group
-    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" First name
-    div class="col-md-6 col-sm-6 col-xs-12"
-      input type="text" class="form-control" disabled="disabled" value="#{@user.first_name}"
+        .form-group
+          label Last name
+          input type="text" class="form-control" disabled="disabled" value="#{@user.last_name}"
 
-  .form-group
-    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Last name
-    div class="col-md-6 col-sm-6 col-xs-12"
-      input type="text" class="form-control" disabled="disabled" value="#{@user.last_name}"
+        .form-group
+          label Email
+          input type="text" class="form-control" disabled="disabled" value="#{@user.email}"
 
-  .form-group
-    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Email
-    div class="col-md-6 col-sm-6 col-xs-12"
-      input type="text" class="form-control" disabled="disabled" value="#{@user.email}"
-
-  .form-group
-    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Active
-    div class="col-md-6 col-sm-6 col-xs-12"
-      - if @user.active?
-        input type="checkbox" class="js-switch" disabled="disabled" checked="checked"
-      - else
-        input type="checkbox" class="js-switch" disabled="disabled"
+        .form-group
+          .togglebutton
+            label
+              - if @user.active?
+                input type="checkbox" disabled="disabled" checked="checked"
+              - else
+                input type="checkbox" disabled="disabled"
+              span class="toggle"
+              | Active

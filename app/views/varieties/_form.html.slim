@@ -1,4 +1,4 @@
-= form_for(variety, :html => { :id => 'demo-form2', class: 'form-horizontal form-label-left', :data_parsley_validate => '' }) do |f|
+= form_for(variety, :html => { id: 'variety_form', class: 'mt-4', data_parsley_validate: '' }) do |f|
   - if variety.errors.any?
     #error_explanation
       h2
@@ -8,23 +8,18 @@
       ul
         - variety.errors.full_messages.each do |message|
           li = message
-  = @product_id.inspect
-  .form-group
-    = f.label :product, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'product'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.select :product_id, @products, {:selected => @product_id, :prompt => '- Select -'}, id: 'varieties', class: 'form-control'
 
   .form-group
-    = f.label :varietyt_code, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'variety_code'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.text_field :variety_code, class: 'form-control col-md-7 col-xs-12'
+    = f.label :product_id
+    = f.select :product_id, @products, { :selected => @product_id, :prompt => '- Select -' }, class: 'form-control'
 
   .form-group
-    = f.label :name, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'name'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.text_field :name, class: 'form-control col-md-7 col-xs-12'
+    = f.label :varietyt_code
+    = f.text_field :variety_code, class: 'form-control'
 
-  .ln_solid
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
 
   .form-group
     div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3"
