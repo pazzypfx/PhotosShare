@@ -1,28 +1,23 @@
-= form_for(place, :html => { :id => 'demo-form2', class: 'form-horizontal form-label-left', :data_parsley_validate => '' }) do |f|
+= form_for(place, :html => { id: 'place_form', class: 'mt-4', data_parsley_validate: '' }) do |f|
   - if place.errors.any?
     #error_explanation
       h2
         = pluralize(place.errors.count, 'error')
-        |  prohibited this prod from being saved:
+        |  prohibited this place from being saved:
 
       ul
         - place.errors.full_messages.each do |message|
           li = message
 
   .form-group
-    = f.label :place_code, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'product_code'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.text_field :place_code, class: 'form-control col-md-7 col-xs-12'
+    = f.label :place_code
+    = f.text_field :place_code, class: 'form-control'
 
   .form-group
-    = f.label :name, class:'control-label col-md-3 col-sm-3 col-xs-12', for: 'name'
-    div class="col-md-6 col-sm-6 col-xs-12"
-      = f.text_field :name, class: 'form-control col-md-7 col-xs-12'
-
-  .ln_solid
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
 
   .form-group
-    div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3"
-      = yield(:cancel_button) if content_for? :cancel_button
-      button class="btn btn-primary" type="reset" Reset
-      = f.submit class: 'btn btn-success'
+    = yield(:cancel_button) if content_for? :cancel_button
+    button class="btn btn-primary" type="reset" Reset
+    = f.submit class: 'btn btn-success'

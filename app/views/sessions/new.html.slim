@@ -2,44 +2,45 @@ doctype html
 
 html lang='en'
   head
-    title Login
-
+    meta charset="utf-8"
+    meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'
     = csrf_meta_tags
 
-    = stylesheet_link_tag    'administration', media: 'all', :'data-turbolinks-track' => 'reload'
+    title Login
+
+    link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+    = stylesheet_link_tag 'administration', media: 'all', :'data-turbolinks-track' => 'reload'
 
   body class="login"
-    .login_wrapper
-      div class="animate form login_form"
-        section class="login_content"
-          = form_tag sessions_path
+    .container
+      div class="d-flex justify-content-center h-100"
+        .card
+          .card-header
+            h3 Login
 
-            h1 Login Form
-            div
-              = text_field_tag :username, params[:username], class: 'form-control', required: '', placeholder:'Username'
+          .card-body
+            - if !flash.empty? && flash[:alert].present?
+              div class="alert alert-danger"
+                = flash[:alert]
 
-            div
-              = password_field_tag :password, params[:password], class: 'form-control', required: '', placeholder: 'Password'
+            = form_tag sessions_path
+              = hidden_field_tag :authenticity_token, form_authenticity_token
 
-            = hidden_field_tag :authenticity_token, form_authenticity_token
+              div class="input-group form-group"
+                .input-group-prepend
+                  span class="input-group-text"
+                    i class="fa fa-user"
+                = text_field_tag :username, params[:username], class: 'form-control', required: '', placeholder:'Username'
 
-            div
-              = submit_tag 'Log in', class: 'btn btn-default submit'
-              a class="reset_pass" href="#" Lost your password?
+              div class="input-group form-group"
+                .input-group-prepend
+                  span class="input-group-text"
+                    i class="fa fa-key"
+                = password_field_tag :password, params[:password], class: 'form-control', required: '', placeholder: 'Password'
 
-            .clearfix
-  
-            - if !flash.empty?
-              - if flash[:alert].present?
-                div class="alert alert-error alert-dismissible fade in"
-                  = flash[:alert]
-
-            .separator
-              .clearfix
-              br
-
-            div
-              h1
-                i class="fa fa-certificate"
-                | TOPSEM
-              p ©2017 All Rights Reserved. TOPSEM. Privacy and Terms
+              .form-group
+                = submit_tag 'Log in', class: 'btn float-right login_btn'
+      footer class="footer fixed-bottom"
+        .container
+          span TOPSEM © 2017-2021 All Rights Reserved.

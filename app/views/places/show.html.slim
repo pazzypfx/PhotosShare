@@ -1,19 +1,23 @@
 - content_for :page_title do
   | Show a Place
 
-= link_to 'Edit', edit_place_path(@place), class: 'btn btn-warning btn-lg'
-= link_to 'Back', places_path, class: 'btn btn-info btn-lg'
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), places_path, class: 'btn btn-default'
+      = link_to raw('<i class="material-icons">create</i>'), edit_place_path(@place), class: 'btn btn-warning'
 
-.ln_solid
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" Place Information
 
-form class="form-horizontal"
+    div class="card-body"
+      form class="mt-4"
+        .form-group
+          label Place code
+          input type="text" class="form-control" disabled="disabled" value="#{@place.place_code}"
 
-  .form-group
-    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Place code
-    div class="col-md-6 col-sm-6 col-xs-12"
-      input type="text" class="form-control" disabled="disabled" value="#{@place.place_code}"
-
-  .form-group
-    label class="control-label control-label col-md-3 col-sm-3 col-xs-12" Name
-    div class="col-md-6 col-sm-6 col-xs-12"
-      input type="text" class="form-control" disabled="disabled" value="#{@place.name}"
+        .form-group
+          label Name
+          input type="text" class="form-control" disabled="disabled" value="#{@place.name}"

@@ -1,9 +1,16 @@
 - content_for :page_title do
   | Editing Variety Information
 
-= link_to 'Show', @variety, class: 'btn btn-info btn-lg'
-= link_to 'Back', varieties_path, class: 'btn btn-info btn-lg'
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), varieties_path, class: 'btn btn-default'
+      = link_to raw('<i class="material-icons">open_in_full</i>'), @variety, class: 'btn btn-info'
 
-.ln_solid
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" Edit Variety Information
 
-= render 'form', variety: @variety
+    div class="card-body"
+      = render 'form', variety: @variety

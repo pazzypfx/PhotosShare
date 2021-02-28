@@ -2,6 +2,17 @@
   | New Place
 
 - content_for :cancel_button do
-  = link_to 'Back', places_path, class: 'btn btn-primary'
+  = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), places_path, class: 'btn btn-default'
 
-= render 'form', place: @place
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), places_path, class: 'btn btn-default'
+
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" Add a Place
+
+    div class="card-body"
+      = render 'form', place: @place

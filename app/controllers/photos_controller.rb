@@ -2,7 +2,7 @@
 class PhotosController < ApplicationController
   before_action :lists_info, except: %i[index show]
   before_action :init_photo, only: %i[show edit update destroy]
-  before_action :set_photo_params, except: %i[index show new]
+  before_action :set_photo_params, except: %i[index show new create]
 
   # GET /photos
   # GET /photos.json

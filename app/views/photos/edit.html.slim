@@ -1,13 +1,21 @@
 - content_for :page_title do
   | Editing Photo Information
 
-= link_to 'Show', @photo, class: 'btn btn-info btn-lg'
-= link_to 'Back', photos_path, class: 'btn btn-info btn-lg'
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), photos_path, class: 'btn btn-default'
+      = link_to raw('<i class="material-icons">open_in_full</i>'), @photo, class: 'btn btn-info'
 
-div class="col-md-8 col-sm-12 col-xs-12"
-  =< image_tag @photo.path.normal.url, style: 'height: 100%; width: 100%; object-fit: contain'
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" Edit Photo Information
 
-.ln_solid
-div class="col-md-4 col-sm-12 col-xs-12"
-  = render 'form', photo: @photo
+    div class="card-body"
+      .row
+        div class="col-md-8 col-sm-12 col-xs-12"
+          =< image_tag @photo.path.normal.url, style: 'height: 100%; width: 100%; object-fit: contain'
 
+        div class="col-md-4 col-sm-12 col-xs-12"
+          = render 'form', photo: @photo

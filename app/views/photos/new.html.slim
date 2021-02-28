@@ -2,6 +2,17 @@
   | New Photo
 
 - content_for :cancel_button do
-  = link_to 'Back', photos_path, class: 'btn btn-primary'
-= render 'form', photo: @photo
+  = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), photos_path, class: 'btn btn-default'
 
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), photos_path, class: 'btn btn-default'
+
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" Add a Photo
+
+    div class="card-body"
+      = render 'form', photo: @photo

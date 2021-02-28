@@ -1,0 +1,19 @@
+//= require core/jquery.min.js
+//= require core/popper.min.js
+//= require core/bootstrap-material-design.min.js
+//= require plugins/perfect-scrollbar.jquery.min.js
+
+//= require plugins/moment.min.js
+//= require plugins/sweetalert2.js
+//= require plugins/jquery.validate.min.js
+//= require plugins/jquery.bootstrap-wizard.js
+//= require plugins/bootstrap-selectpicker.js
+//= require plugins/bootstrap-datetimepicker.min.js
+//= require plugins/jquery.dataTables.min.js
+//= require plugins/bootstrap-tagsinput.js
+//= require plugins/jasny-bootstrap.min.js
+//= require plugins/fullcalendar.min.js
+//= require plugins/jquery-jvectormap.js
+//= require plugins/nouislider.min.js
+//= require plugins/arrive.min.js
+//= require plugins/bootstrap-notify.js

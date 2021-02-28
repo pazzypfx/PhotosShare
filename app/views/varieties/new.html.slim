@@ -2,6 +2,17 @@
   | New Variety
 
 - content_for :cancel_button do
-  = link_to 'Back', varieties_path, class: 'btn btn-primary'
+  = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), varieties_path, class: 'btn btn-default'
 
-= render 'form', variety: @variety
+div class="col-12"
+  .card
+    .card-body
+      = link_to raw('<i class="material-icons">keyboard_arrow_left</i>'), varieties_path, class: 'btn btn-default'
+
+div class="col-12"
+  .card
+    div class="card-header card-header-warning"
+      h4 class="card-title" Add a Variety
+
+    div class="card-body"
+      = render 'form', variety: @variety
